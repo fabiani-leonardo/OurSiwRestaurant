@@ -1,14 +1,61 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ristorante {
 	
-	public String nome;
-	public String indirizzo;
-	public Integer numero;
-	public String immagine;
+	private String nome;
+	private  String indirizzo;
+	private  Integer numeroTelefono;
+	private  String immagine;
+	@OneToOne
+	private Menu menu;
+	@OneToMany
+	private List<Recensione> recesnioni;
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+	public Integer getNumeroTelefono() {
+		return numeroTelefono;
+	}
+	public void setNumeroTelefono(Integer numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
+	}
+	public String getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+	public Menu getMenu() {
+		return menu;
+	}
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+	public List<Recensione> getRecesnioni() {
+		return recesnioni;
+	}
+	public void setRecesnioni(List<Recensione> recesnioni) {
+		this.recesnioni = recesnioni;
+	}
+	
+	
+	
 	
 	
 
