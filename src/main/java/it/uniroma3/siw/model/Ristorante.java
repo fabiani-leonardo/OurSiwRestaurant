@@ -55,11 +55,18 @@ public class Ristorante {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
-	public List<Recensione> getRecesnioni() {
+
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public List<Recensione> getRecensioni() {
 		return recensioni;
 	}
-	public void setRecesnioni(List<Recensione> recesnioni) {
-		this.recensioni = recesnioni;
+	public void setRecensioni(List<Recensione> recensioni) {
+		this.recensioni = recensioni;
 	}
 	
 	
