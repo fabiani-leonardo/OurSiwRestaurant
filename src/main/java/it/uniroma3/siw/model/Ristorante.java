@@ -3,11 +3,18 @@ package it.uniroma3.siw.model;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ristorante {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 	
 	private String nome;
 	private  String indirizzo;
@@ -16,7 +23,8 @@ public class Ristorante {
 	@OneToOne
 	private Menu menu;
 	@OneToMany
-	private List<Recensione> recesnioni;
+	private List<Recensione> recensioni;
+	
 	public String getNome() {
 		return nome;
 	}
@@ -48,10 +56,10 @@ public class Ristorante {
 		this.menu = menu;
 	}
 	public List<Recensione> getRecesnioni() {
-		return recesnioni;
+		return recensioni;
 	}
 	public void setRecesnioni(List<Recensione> recesnioni) {
-		this.recesnioni = recesnioni;
+		this.recensioni = recesnioni;
 	}
 	
 	
