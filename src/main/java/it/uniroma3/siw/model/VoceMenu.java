@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,9 +14,13 @@ public class VoceMenu {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String nome;
+	@Column(length= 250)
 	private String descrizione;
+	@Column(nullable = false)
 	private int prezzo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +47,7 @@ public class VoceMenu {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(descrizione, id, nome, prezzo);
+		return Objects.hash(nome, prezzo);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -53,9 +58,10 @@ public class VoceMenu {
 		if (getClass() != obj.getClass())
 			return false;
 		VoceMenu other = (VoceMenu) obj;
-		return Objects.equals(descrizione, other.descrizione) && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome) && prezzo == other.prezzo;
+		return Objects.equals(nome, other.nome) && prezzo == other.prezzo;
 	}
+	
 
 	
 }
+

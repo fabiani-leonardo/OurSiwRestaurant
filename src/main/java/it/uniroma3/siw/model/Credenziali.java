@@ -1,6 +1,9 @@
 package it.uniroma3.siw.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +19,9 @@ public class Credenziali {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	@Column(nullable = false)
 	private String username;
+	@Column(nullable = false)
 	private String password;
 	private String ruolo;
 
@@ -62,6 +67,26 @@ public class Credenziali {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(password, ruolo, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Credenziali other = (Credenziali) obj;
+		return Objects.equals(password, other.password) && Objects.equals(ruolo, other.ruolo)
+				&& Objects.equals(username, other.username);
+	}
+	
+	
 	
 	
 
