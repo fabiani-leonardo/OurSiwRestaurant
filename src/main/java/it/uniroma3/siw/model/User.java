@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class User {
 	@NotBlank
 	private String surname;
 	@NotBlank
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	public Long getId() {
