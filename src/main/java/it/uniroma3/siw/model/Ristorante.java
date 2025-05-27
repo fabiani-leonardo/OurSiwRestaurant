@@ -22,7 +22,7 @@ public class Ristorante {
 	@Column(nullable = false)
 	private  String indirizzo;
 	private  Integer numeroTelefono;
-	private  String immagine;
+	private  List<String> urlImmagini;
 	@OneToOne
 	private Menu menu;
 	@OneToMany
@@ -46,11 +46,12 @@ public class Ristorante {
 	public void setNumeroTelefono(Integer numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
-	public String getImmagine() {
-		return immagine;
+
+	public List<String> getUrlImmagini() {
+		return urlImmagini;
 	}
-	public void setImmagine(String immagine) {
-		this.immagine = immagine;
+	public void setUrlImmagini(List<String> urlImmagini) {
+		this.urlImmagini = urlImmagini;
 	}
 	public Menu getMenu() {
 		return menu;

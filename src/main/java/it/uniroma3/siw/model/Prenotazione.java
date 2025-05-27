@@ -1,9 +1,9 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 import java.util.Objects;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +27,9 @@ public class Prenotazione {
 	@OneToOne
 	private User user;
 	
+	public Prenotazione() {
+		
+	}
 	
 
 	public Long getId() {
