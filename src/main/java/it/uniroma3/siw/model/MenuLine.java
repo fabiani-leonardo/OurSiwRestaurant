@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class VoceMenu {
+public class MenuLine {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -57,7 +57,7 @@ public class VoceMenu {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VoceMenu other = (VoceMenu) obj;
+		MenuLine other = (MenuLine) obj;
 		return Objects.equals(nome, other.nome) && prezzo == other.prezzo;
 	}
 	

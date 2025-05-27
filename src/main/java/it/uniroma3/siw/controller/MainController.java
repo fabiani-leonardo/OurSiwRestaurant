@@ -10,15 +10,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import it.uniroma3.siw.model.Credenziali;
-import it.uniroma3.siw.service.CredenzialiService;
+import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
 
 @Controller  // Indica che questa classe è un controller Spring MVC
 public class MainController {
 
 	@Autowired	// Inietta automaticamente l'istanza del servizio CredenzialiService
-	private CredenzialiService credenzialiService;
+	private CredentialsService credentialsService;
 
     @Autowired  // Inietta automaticamente l'istanza del servizio UserService (non usato qui ma utile per future estensioni)
 	private UserService userService;
@@ -38,10 +38,10 @@ public class MainController {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	//come visto anche prima il SecurityHolder contiene tutte le informazioni dell'utente in modo sicuro
 			
 			// Ottiene le credenziali dal database usando lo username
-			Credenziali credentials = credenzialiService.getCredenziali(userDetails.getUsername());
+			Credentials credentials = credentialsService.getCredenziali(userDetails.getUsername());
 			
 			// Se l'utente ha ruolo ADMIN, reindirizza alla home dell'area amministratore
-			if (credentials.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
+			if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
 				return "admin/adminHome.html";
 			}
 		}

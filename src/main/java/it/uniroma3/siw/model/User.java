@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -24,6 +25,17 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
+	 // User → Recensione (lato non proprietario)
+    @OneToOne(mappedBy = "user")
+    private Review review;
+	
+    
+	public Review getRecensione() {
+		return review;
+	}
+	public void setRecensione(Review review) {
+		this.review = review;
+	}
 	public Long getId() {
 		return id;
 	}

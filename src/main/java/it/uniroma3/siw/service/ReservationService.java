@@ -2,13 +2,13 @@ package it.uniroma3.siw.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import it.uniroma3.siw.repository.VoceMenuRepository;
+import it.uniroma3.siw.repository.ReservationRepository;
 
 @Service
-public class VoceMenuService {
+public class ReservationService {
 
     @Autowired
-    private VoceMenuRepository voceMenuRepository;
+    private ReservationRepository reservationRepository;
 
     // Aggiungeremo i metodi quando sapremo cosa ci serve
 }

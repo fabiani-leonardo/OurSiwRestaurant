@@ -1,9 +1,9 @@
 package it.uniroma3.siw.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import it.uniroma3.siw.model.Ristorante;
+import it.uniroma3.siw.model.Restaurant;
 
-public interface RistoranteRepository extends CrudRepository<Ristorante, Long> {
+public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 	
 	//aggiungeremo i metodi quando sapremo cosa ci serve
 }

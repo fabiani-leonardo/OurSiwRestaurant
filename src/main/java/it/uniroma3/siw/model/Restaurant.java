@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Ristorante {
+public class Restaurant {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class Ristorante {
 	@OneToOne
 	private Menu menu;
 	@OneToMany
-	private List<Recensione> recensioni;
+	private List<Review> recensioni;
 	
 	public String getNome() {
 		return nome;
@@ -66,10 +66,10 @@ public class Ristorante {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public List<Recensione> getRecensioni() {
+	public List<Review> getRecensioni() {
 		return recensioni;
 	}
-	public void setRecensioni(List<Recensione> recensioni) {
+	public void setRecensioni(List<Review> recensioni) {
 		this.recensioni = recensioni;
 	}
 	@Override
@@ -84,7 +84,7 @@ public class Ristorante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ristorante other = (Ristorante) obj;
+		Restaurant other = (Restaurant) obj;
 		return Objects.equals(indirizzo, other.indirizzo) && Objects.equals(nome, other.nome);
 	}
 	

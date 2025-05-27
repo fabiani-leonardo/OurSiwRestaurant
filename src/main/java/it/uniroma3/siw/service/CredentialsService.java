@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import it.uniroma3.siw.model.Credenziali;
-import it.uniroma3.siw.repository.CredenzialiRepository;
+import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.repository.CredentialsRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class CredenzialiService {
+public class CredentialsService {
 
     @Autowired
-    private CredenzialiRepository credenzialiRepository;
+    private CredentialsRepository credentialsRepository;
     
     @Autowired
     protected PasswordEncoder passwordEncoder;
@@ -24,23 +24,23 @@ public class CredenzialiService {
     
     /*chiede a credenzialiRepository di trovare un oggetto credenziali dato un id e lo restituisce*/
     @Transactional
-    public Credenziali getCredenziali(Long id) {
-        Optional<Credenziali> result = this.credenzialiRepository.findById(id);
+    public Credentials getCredenziali(Long id) {
+        Optional<Credentials> result = this.credentialsRepository.findById(id);
         return result.orElse(null);
     }
     
     /*chiede a credenzialiRepository di trovare un oggetto credenziali dato uno username e lo restituisce*/
     @Transactional
-    public Credenziali getCredenziali(String username) {
-        Optional<Credenziali> result = this.credenzialiRepository.findByUsername(username);
+    public Credentials getCredenziali(String username) {
+        Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
         return result.orElse(null);
     }
 
     /*chiee a credenzialiRepository di salvare l'oggetto Credenziali fornito ma solo dopo aver cryptato la password*/
     @Transactional
-    public Credenziali saveCredenziali(Credenziali credentials) {
-        credentials.setRuolo(Credenziali.DEFAULT_ROLE);
+    public Credentials saveCredenziali(Credentials credentials) {
+        credentials.setRuolo(Credentials.DEFAULT_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
-        return this.credenzialiRepository.save(credentials);
+        return this.credentialsRepository.save(credentials);
     }
 }
