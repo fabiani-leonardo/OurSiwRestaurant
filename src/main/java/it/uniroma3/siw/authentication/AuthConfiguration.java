@@ -18,8 +18,8 @@ import static it.uniroma3.siw.model.Credenziali.ADMIN_ROLE;
 
 import javax.sql.DataSource;
 
-@Configuration
-@EnableWebSecurity
+@Configuration								//questa è una classe di configurazione
+@EnableWebSecurity							//attiva Spring Security per questo progetto.
 //public  class WebSecurityConfig {
 	public class AuthConfiguration {
 
@@ -36,7 +36,7 @@ import javax.sql.DataSource;
     }
     
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder(){		//Spring userà BCrypt per codificare le password quando vengono salvate.
         return new BCryptPasswordEncoder();
     }
 
