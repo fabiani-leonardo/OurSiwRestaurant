@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			Ristorante-HomePage
-		</title>
-		<!--<link rel="stylesheet" href="/css/" />-->
-	</head>
-	<body>
-		<header>
-			<div th:if="${userDetails}">
-						<span th:text="${userDetails.username}"></span>
-						<a href="/logout">Logout</a>
-					</div>
-					<div th:unless="${user}">
-						<a href="/login">Login</a>
-					</div>
-		</header>
-		<h1>Elisyum</h1>
-		<div>
-			<p>Via ...</p>
+
+<head>
+	<title>
+		Ristorante-HomePage
+	</title>
+	<!--<link rel="stylesheet" href="/css/" />-->
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
 		</div>
-		<div>
-			<p> 393 ...</p>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
 		</div>
-		<div>
-			<a href="/menu">Menu</a>
-		</div>
-		<div>
-			<a href="/recensioni">Recensioni</a>
-		</div>
-		<!--		<div class="carousel">
+	</header>
+	<h1>Elisyum</h1>
+	<div>
+		<p>Via ...</p>
+	</div>
+	<div>
+		<p> 393 ...</p>
+	</div>
+	<div>
+		<a href="/menu">Menu</a>
+	</div>
+	<div>
+		<a href="/prenotazione">Prenota ora</a>
+	</div>
+	<div>
+		<a href="/recensioni">Recensioni</a>
+	</div>
+	<!--		<div class="carousel">
 			<img src="/images/ristorante1.jpg" alt="Sala 1" />
 			<img src="/images/ristorante2.jpg" alt="Sala 2" />
 			<img src="/images/ristorante3.jpg" alt="Cucina" />
@@ -38,7 +43,6 @@
 		<div th:each="img : ${ristorante.immagini}">
 			<img th:src="@{'/images/' + ${img}}" alt="immagine" />
 		</div>-->
-	</body>
-	
+</body>
+
 </html>
-	
