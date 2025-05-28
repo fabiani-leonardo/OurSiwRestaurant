@@ -47,7 +47,7 @@ public class MainController {
 		}
 		
 		// Se l’utente è autenticato ma non è un admin, mostra la home standard
-        return "index.html";
+        return "home.html";
     }
 }
 
