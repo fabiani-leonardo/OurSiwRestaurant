@@ -44,9 +44,13 @@ public class MainController {
 			if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
 				return "admin/adminHome.html";
 			}
+			
+
 		}
 		
 		// Se l’utente è autenticato ma non è un admin, mostra la home standard
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	//come visto anche prima il SecurityHolder contiene tutte le informazioni dell'utente in modo sicuro
+		model.addAttribute("userDetails", userDetails);	//aggiungo ad home.html la possibilità di utilizzare i dati dell'utente autenticato presenti in userDetails
         return "home.html";
     }
 }

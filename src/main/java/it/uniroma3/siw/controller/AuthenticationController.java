@@ -31,7 +31,7 @@ public class AuthenticationController {
 	@GetMapping(value = "/register")
 	public String showRegisterForm(Model model) {
 		model.addAttribute("user", new User());
-		model.addAttribute("credenziali", new Credentials());
+		model.addAttribute("credentials", new Credentials());
 		return "formRegisterUser";
 	}
 
@@ -47,6 +47,8 @@ public class AuthenticationController {
 		if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
 			return "admin/adminHome.html";
 		}
+		
+		model.addAttribute("userDetails", userDetails);	//aggiungo ad home.html la possibilità di utilizzare i dati dell'utente autenticato presenti in userDetails
 		return "home.html";
 	}
 
