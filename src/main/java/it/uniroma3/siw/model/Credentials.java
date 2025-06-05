@@ -27,6 +27,26 @@ public class Credentials {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
+	
+	private boolean mustChange;
+	
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean getMustChange() {
+		return mustChange;
+	}
+
+	public void setMustChange(boolean mustChange) {
+		this.mustChange = mustChange;
+	}
 
 	public Long getId() {
 		return id;

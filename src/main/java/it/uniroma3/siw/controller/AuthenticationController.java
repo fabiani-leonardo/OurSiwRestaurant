@@ -43,8 +43,11 @@ public class AuthenticationController {
 	@GetMapping(value = "/success")
 	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credentials credentials = credentialsService.getCredenziali(userDetails.getUsername());
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
+			if (credentials.getMustChange()) {
+			    return "admin/changeCredentials";	//pagina e metodo da implementare
+			}
 			return "admin/adminHome.html";
 		}
 		
@@ -62,10 +65,66 @@ public class AuthenticationController {
 		if (!userBindingResult.hasErrors() && !credenzialiBindingResult.hasErrors()) {
 			userService.saveUser(user);
 			credentials.setUser(user);
-			credentialsService.saveCredenziali(credentials);
+			credentialsService.saveCredentials(credentials);
 			model.addAttribute("user", user);
 			return "registrationSuccessful";
 		}
 		return "formRegisterUser";
 	}
+	
+	/*
+	@GetMapping("/changeCredentials")
+	public String showModificaCredenziali(Model model, Principal principal) {
+	    Credentials credentials = credentialsService.getCredentials(principal.getName());
+	    model.addAttribute("credentials", credentials);
+	    return "formModificaCredenziali";
+	}
+
+	@PostMapping("/modificaCredenziali")
+	public String modificaCredenziali(@ModelAttribute("credentials") Credentials newCreds,
+	                                  @RequestParam("confermaPassword") String confermaPassword,
+	                                  Model model, Principal principal) {
+	    Credentials oldCreds = credentialsService.getCredentials(principal.getName());
+
+	    // Validazione password
+	    if (!newCreds.getPassword().equals(confermaPassword)) {
+	        model.addAttribute("error", "Le password non coincidono.");
+	        return "formModificaCredenziali";
+	    }
+
+	    // Validazione username già usato (opzionale)
+	    if (!oldCreds.getUsername().equals(newCreds.getUsername()) &&
+	        credentialsService.getCredentials(newCreds.getUsername()) != null) {
+	        model.addAttribute("error", "Username già in uso.");
+	        return "formModificaCredenziali";
+	    }
+
+	    // Aggiornamento
+	    oldCreds.setUsername(newCreds.getUsername());
+	    oldCreds.setPassword(newCreds.getPassword());
+	    oldCreds.setMustChange(false);
+	    credentialsService.saveCredentials(oldCreds);
+
+	    return "redirect:/default"; // O pagina home
+	
+	
+	
+	
+	//admin
+	
+	
+	
+	/*@GetMapping(value = "/admin/login")
+	public String showLoginAdminForm(Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if (credentials.getMustChange()) {
+		    return "redirect:/admin/modificaCredenziali";
+		}
+		else {
+			return "formLogin";
+		}
+		
+	}*/
+	
 }

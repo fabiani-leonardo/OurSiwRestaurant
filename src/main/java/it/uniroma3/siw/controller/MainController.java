@@ -38,7 +38,7 @@ public class MainController {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	//come visto anche prima il SecurityHolder contiene tutte le informazioni dell'utente in modo sicuro
 			
 			// Ottiene le credenziali dal database usando lo username
-			Credentials credentials = credentialsService.getCredenziali(userDetails.getUsername());
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 			
 			// Se l'utente ha ruolo ADMIN, reindirizza alla home dell'area amministratore
 			if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {

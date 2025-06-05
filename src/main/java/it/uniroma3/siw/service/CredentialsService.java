@@ -24,23 +24,28 @@ public class CredentialsService {
     
     /*chiede a credenzialiRepository di trovare un oggetto credenziali dato un id e lo restituisce*/
     @Transactional
-    public Credentials getCredenziali(Long id) {
+    public Credentials getCredentials(Long id) {
         Optional<Credentials> result = this.credentialsRepository.findById(id);
         return result.orElse(null);
     }
     
     /*chiede a credenzialiRepository di trovare un oggetto credenziali dato uno username e lo restituisce*/
     @Transactional
-    public Credentials getCredenziali(String username) {
+    public Credentials getCredentials(String username) {
         Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
         return result.orElse(null);
     }
 
     /*chiee a credenzialiRepository di salvare l'oggetto Credenziali fornito ma solo dopo aver cryptato la password*/
     @Transactional
-    public Credentials saveCredenziali(Credentials credentials) {
+    public Credentials saveCredentials(Credentials credentials) {
         credentials.setRuolo(Credentials.DEFAULT_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }
+
+    public boolean adminExists() {	//questo metodo serve a verificare l'esistenza di almeno un admin nel db
+        return credentialsRepository.existsByRole(Credentials.ADMIN_ROLE);
+    }
+
 }
