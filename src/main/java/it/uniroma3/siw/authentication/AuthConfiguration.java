@@ -20,7 +20,6 @@ import javax.sql.DataSource;
 
 @Configuration								//questa è una classe di configurazione
 @EnableWebSecurity							//attiva Spring Security per questo progetto.
-//public  class WebSecurityConfig {
 	public class AuthConfiguration {
 
     @Autowired

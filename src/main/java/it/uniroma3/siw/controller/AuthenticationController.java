@@ -22,6 +22,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class AuthenticationController {
+	
+	private String formChangeCredentials="formChangeCredentials";
 
 	@Autowired
 	private CredentialsService credentialsService;
@@ -88,7 +90,7 @@ public class AuthenticationController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 	    model.addAttribute("credentials", credentials);
-	    return "formChangeCredentials";
+	    return formChangeCredentials;
 	}
 
 	@PostMapping("/modificaCredenziali")
@@ -102,14 +104,14 @@ public class AuthenticationController {
 	    // Validazione password
 	    if (!newCreds.getPassword().equals(confermaPassword)) {
 	        model.addAttribute("error", "Le password non coincidono.");
-	        return "formChangeCredentials";
+	        return formChangeCredentials;
 	    }
 
 	    // Controllo username già esistente
 	    Credentials esistenti = credentialsService.getCredentials(newCreds.getUsername());
 	    if (!oldCreds.getUsername().equals(newCreds.getUsername()) && esistenti != null) {
 	        model.addAttribute("error", "Username già in uso.");
-	        return "formChangeCredentials";
+	        return formChangeCredentials;
 	    }
 
 	    // Aggiornamento e salvataggio (codifica avviene nel service)
@@ -128,21 +130,8 @@ public class AuthenticationController {
 	
 	
 	
-	//admin
+	//admin section:
 	
 	
-	
-	/*@GetMapping(value = "/admin/login")
-	public String showLoginAdminForm(Model model) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		if (credentials.getMustChange()) {
-		    return "redirect:/admin/modificaCredenziali";
-		}
-		else {
-			return "formLogin";
-		}
-		
-	}*/
 	
 }

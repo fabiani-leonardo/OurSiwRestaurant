@@ -27,10 +27,6 @@ public class Reservation {
 	@OneToOne
 	private User user;
 	
-	public Reservation() {
-		
-	}
-	
 
 	public Long getId() {
 		return id;
