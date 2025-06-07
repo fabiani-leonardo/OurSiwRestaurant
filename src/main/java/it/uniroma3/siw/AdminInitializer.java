@@ -25,11 +25,15 @@ public class AdminInitializer implements CommandLineRunner {
             Credentials credentials = new Credentials();
             credentials.setUsername("admin");
             credentials.setPassword("admin");
-            credentials.setRuolo(Credentials.ADMIN_ROLE);
+            credentials.setRole(Credentials.ADMIN_ROLE);
             credentials.setUser(adminUser);
             credentials.setMustChange(true); // Forza il cambio al primo login
 
             credentialsService.saveCredentials(credentials);
+            
+            System.out.println(credentials.getRole());
+            System.out.println(Credentials.ADMIN_ROLE);
+            System.out.println(Credentials.DEFAULT_ROLE);
 
             System.out.println("Admin creato con username/password: admin/admin");
         } else {

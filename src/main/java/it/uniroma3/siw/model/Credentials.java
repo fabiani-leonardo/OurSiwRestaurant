@@ -13,8 +13,8 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Credentials {
 	
+	public static final String ADMIN_ROLE = "ADMIN"; 
 	public static final String DEFAULT_ROLE = "DEFAULT";
-	public static final String ADMIN_ROLE = "AMMINISTRATORE";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,7 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	private boolean mustChange;
+	private boolean mustChange;	//variabile che indica se al prossimo login le credenziali vanno cambiate o meno
 	
 	
 
@@ -72,13 +72,7 @@ public class Credentials {
 		this.password = password;
 	}
 
-	public String getRuolo() {
-		return role;
-	}
 
-	public void setRuolo(String ruolo) {
-		this.role = ruolo;
-	}
 
 	public User getUser() {
 		return user;

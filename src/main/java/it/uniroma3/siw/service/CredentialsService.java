@@ -39,7 +39,9 @@ public class CredentialsService {
     /*chiee a credenzialiRepository di salvare l'oggetto Credenziali fornito ma solo dopo aver cryptato la password*/
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
-        credentials.setRuolo(Credentials.DEFAULT_ROLE);
+        if(credentials.getRole()!=Credentials.ADMIN_ROLE) {		
+        	credentials.setRole(Credentials.DEFAULT_ROLE);
+        }
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }

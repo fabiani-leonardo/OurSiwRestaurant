@@ -41,7 +41,7 @@ public class MainController {
 			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 			
 			// Se l'utente ha ruolo ADMIN, reindirizza alla home dell'area amministratore
-			if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
+			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 				return "admin/adminHome.html";
 			}
 			

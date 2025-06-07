@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
@@ -44,21 +45,30 @@ public class AuthenticationController {
 	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		if (credentials.getRuolo().equals(Credentials.ADMIN_ROLE)) {
-			if (credentials.getMustChange()) {
-			    return "admin/changeCredentials";	//pagina e metodo da implementare
-			}
-			return "admin/adminHome.html";
-		}
 		
-		model.addAttribute("userDetails", userDetails);	//aggiungo ad home.html la possibilità di utilizzare i dati dell'utente autenticato presenti in userDetails
-		return "home.html";
+		model.addAttribute("userDetails", userDetails);
+		
+		/*verifichiamo ora se l'utente che ha acceduto è un admin, se lo è, verifichiamo anche se
+		 nelle sue credenziali la variabile mustChange (che indica se le sue credenziali vanno cambiate)
+		 è impostata su true, in tal caso reindirizziamo l'utente a /changeCredentials per cambiare 
+		 username e password*/
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			System.out.println("sono un amministratoreeee");
+			if (credentials.getMustChange()) {
+			    return "redirect:/changeCredentials";
+			}else {
+				System.out.println("stiamo andando alla adminHome");
+				return "admin/adminHome";
+			}
+		}
+		System.out.println("stiamo andando alla Home");
+		return "home";
 	}
 
 	@PostMapping(value = { "/register" })
 	public String registerUser(@Valid @ModelAttribute("user") User user,
 							   BindingResult userBindingResult,
-							   @Valid @ModelAttribute("credenziali") Credentials credentials,
+							   @Valid @ModelAttribute("credentials") Credentials credentials,
 							   BindingResult credenzialiBindingResult,
 							   Model model) {
 
@@ -72,41 +82,49 @@ public class AuthenticationController {
 		return "formRegisterUser";
 	}
 	
-	/*
+	
 	@GetMapping("/changeCredentials")
-	public String showModificaCredenziali(Model model, Principal principal) {
-	    Credentials credentials = credentialsService.getCredentials(principal.getName());
+	public String showModificaCredenziali(Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 	    model.addAttribute("credentials", credentials);
-	    return "formModificaCredenziali";
+	    return "formChangeCredentials";
 	}
 
 	@PostMapping("/modificaCredenziali")
 	public String modificaCredenziali(@ModelAttribute("credentials") Credentials newCreds,
 	                                  @RequestParam("confermaPassword") String confermaPassword,
-	                                  Model model, Principal principal) {
-	    Credentials oldCreds = credentialsService.getCredentials(principal.getName());
+	                                  Model model) {
+
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Credentials oldCreds = credentialsService.getCredentials(auth.getName());
 
 	    // Validazione password
 	    if (!newCreds.getPassword().equals(confermaPassword)) {
 	        model.addAttribute("error", "Le password non coincidono.");
-	        return "formModificaCredenziali";
+	        return "formChangeCredentials";
 	    }
 
-	    // Validazione username già usato (opzionale)
-	    if (!oldCreds.getUsername().equals(newCreds.getUsername()) &&
-	        credentialsService.getCredentials(newCreds.getUsername()) != null) {
+	    // Controllo username già esistente
+	    Credentials esistenti = credentialsService.getCredentials(newCreds.getUsername());
+	    if (!oldCreds.getUsername().equals(newCreds.getUsername()) && esistenti != null) {
 	        model.addAttribute("error", "Username già in uso.");
-	        return "formModificaCredenziali";
+	        return "formChangeCredentials";
 	    }
 
-	    // Aggiornamento
+	    // Aggiornamento e salvataggio (codifica avviene nel service)
 	    oldCreds.setUsername(newCreds.getUsername());
 	    oldCreds.setPassword(newCreds.getPassword());
 	    oldCreds.setMustChange(false);
 	    credentialsService.saveCredentials(oldCreds);
 
-	    return "redirect:/default"; // O pagina home
-	
+	    // Logout forzato per richiedere nuovo login con credenziali aggiornate
+	    SecurityContextHolder.clearContext();
+
+	    return "redirect:/login";
+	}
+
+
 	
 	
 	
