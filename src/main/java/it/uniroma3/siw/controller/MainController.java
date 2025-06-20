@@ -14,7 +14,9 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
 
-@Controller  // Indica che questa classe è un controller Spring MVC
+/*con questo controller gestiamo solo la pagina radice*/
+
+@Controller
 public class MainController {
 
 	@Autowired	// Inietta automaticamente l'istanza del servizio CredenzialiService
@@ -42,6 +44,7 @@ public class MainController {
 			
 			// Se l'utente ha ruolo ADMIN, reindirizza alla home dell'area amministratore
 			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("userDetails", userDetails);	//aggiungo ad home.html la possibilità di utilizzare i dati dell'utente autenticato presenti in userDetails
 				return "admin/adminHome.html";
 			}
 			

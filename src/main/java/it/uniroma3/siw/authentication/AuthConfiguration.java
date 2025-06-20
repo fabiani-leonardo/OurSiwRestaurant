@@ -18,8 +18,10 @@ import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
 
 import javax.sql.DataSource;
 
-@Configuration								//questa è una classe di configurazione
-@EnableWebSecurity							//attiva Spring Security per questo progetto.
+	/*Questa classe serve a gestire quali utenti possono accedere a quali pagine del sito*/
+
+	@Configuration								
+	@EnableWebSecurity							
 	public class AuthConfiguration {
 
     @Autowired
@@ -44,6 +46,8 @@ import javax.sql.DataSource;
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    /*questa è la parte importante che va modificata per i permessi*/
+    
     @Bean
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
         httpSecurity
