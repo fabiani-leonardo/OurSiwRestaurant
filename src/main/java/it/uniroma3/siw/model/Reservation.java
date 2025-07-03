@@ -19,9 +19,9 @@ public class Reservation {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@Column(nullable = false)
-	private LocalDate data;
+	private LocalDate date;
 	@Column(nullable = false)
-	private LocalTime ora;
+	private LocalTime hour;
 	@Column(nullable = false)
 	private int numeroPersone;
 	
@@ -37,27 +37,27 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
-	public LocalTime getOra() {
-		return ora;
+	public LocalTime getHour() {
+		return hour;
 	}
 
-	public void setOra(LocalTime ora) {
-		this.ora = ora;
+	public void setHour(LocalTime hour) {
+		this.hour = hour;
 	}
-
-	public int getNumeroPersone() {
+	
+	public int getNumberOfPeople() {
 		return numeroPersone;
 	}
 
-	public void setNumeroPersone(int numeroPersone) {
+	public void setNumberOfPeople(int numeroPersone) {
 		this.numeroPersone = numeroPersone;
 	}
 
@@ -71,7 +71,7 @@ public class Reservation {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(data, ora, user);
+		return Objects.hash(date, hour, user);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class Reservation {
 		if (getClass() != obj.getClass())
 			return false;
 		Reservation other = (Reservation) obj;
-		return Objects.equals(data, other.data) && Objects.equals(ora, other.ora) && Objects.equals(user, other.user);
+		return Objects.equals(date, other.date) && Objects.equals(hour, other.hour) && Objects.equals(user, other.user);
 	}
 	
 	

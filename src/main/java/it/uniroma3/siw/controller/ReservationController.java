@@ -50,10 +50,10 @@ public class ReservationController {
     @GetMapping("/add")
     public String showReservationForm(Model model) {
         Reservation reservation = new Reservation();
-        reservation.setData(LocalDate.now()); // default today
+        reservation.setDate(LocalDate.now()); // default today
         
         model.addAttribute("reservation", reservation);
-        model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getData()));
+        model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
         return "reservation/reservationForm";
     }
 
@@ -65,19 +65,19 @@ public class ReservationController {
 
         // 1) validazione form base
         if (br.hasErrors()) {
-            model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getData()));
+            model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
             return "reservation/reservationForm";
         }
 
         // 2) controllo capienza
-        int remaining = reservationService.getSlotAvailability(reservation.getData()).stream()
-                             .filter(s -> s.time().equals(reservation.getOra()))
+        int remaining = reservationService.getSlotAvailability(reservation.getDate()).stream()
+                             .filter(s -> s.time().equals(reservation.getHour()))
                              .findFirst()
                              .map(Slot::remaining)
                              .orElse(0);
-        if (reservation.getNumeroPersone() > remaining) {
+        if (reservation.getNumberOfPeople() > remaining) {
             br.rejectValue("ora", "full", "Posti insufficienti per questo orario");
-            model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getData()));
+            model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
             return "reservation/reservationForm";
         }
 

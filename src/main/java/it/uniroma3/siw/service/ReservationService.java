@@ -37,7 +37,7 @@ public class ReservationService {
         for (LocalTime t = start; !t.isAfter(end); t = t.plusMinutes(30)) {
             int used = reservationRepository.findByDataAndOra(date, t)
                                  .stream()
-                                 .mapToInt(Reservation::getNumeroPersone)
+                                 .mapToInt(Reservation::getNumberOfPeople)
                                  .sum();
             slots.add(new Slot(t, MAX_PER_SLOT - used));
         }

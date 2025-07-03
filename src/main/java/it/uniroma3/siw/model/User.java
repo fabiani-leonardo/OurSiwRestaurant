@@ -30,10 +30,10 @@ public class User {
     private Review review;
 	
     
-	public Review getRecensione() {
+	public Review getReview() {
 		return review;
 	}
-	public void setRecensione(Review review) {
+	public void setReview(Review review) {
 		this.review = review;
 	}
 	public Long getId() {
