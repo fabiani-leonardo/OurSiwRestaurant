@@ -24,9 +24,9 @@
             </thead>
             <tbody>
                 <tr th:each="reservation : ${reservations}">
-                    <td th:text="${reservation.data}"></td>
-                    <td th:text="${reservation.ora}"></td>
-                    <td th:text="${reservation.numeroPersone}"></td>
+                    <td th:text="${reservation.date}"></td>
+                    <td th:text="${reservation.hour}"></td>
+                    <td th:text="${reservation.numberOfPeople}"></td>
                     <td>
                         <form th:action="@{/reservations/delete/{id}(id=${reservation.id})}" method="post">
                             <button type="submit">Annulla</button>
