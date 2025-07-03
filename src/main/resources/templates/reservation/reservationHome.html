@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Le mie prenotazioni</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Le tue prenotazioni</h1>
+
+    <div th:if="${reservations.isEmpty()}">
+        <p>Non hai ancora effettuato prenotazioni.</p>
+    </div>
+
+    <div th:if="${!reservations.isEmpty()}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Ora</th>
+                    <th>Numero di persone</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reservation : ${reservations}">
+                    <td th:text="${reservation.data}"></td>
+                    <td th:text="${reservation.ora}"></td>
+                    <td th:text="${reservation.numeroPersone}"></td>
+                    <td>
+                        <form th:action="@{/reservations/delete/{id}(id=${reservation.id})}" method="post">
+                            <button type="submit">Annulla</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <a th:href="@{/reservations/add}">
+        <button>Nuova prenotazione</button>
+    </a>
+</body>
+</html>

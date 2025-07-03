@@ -1,11 +1,17 @@
-
-
 package it.uniroma3.siw.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import it.uniroma3.siw.model.Reservation;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import it.uniroma3.siw.model.Reservation;
+import it.uniroma3.siw.model.User;
+
+@Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
-	
-	//aggiungeremo i metodi quando sapremo cosa ci serve
+    List<Reservation> findByUser(User user);
+    List<Reservation> findByDataAndOra(LocalDate data, LocalTime ora);
 }
