@@ -18,41 +18,17 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	@Column(nullable = false)
-	private String nome;
+	private String name;
 	@Column(nullable = false)
-	private  String indirizzo;
-	private  Integer numeroTelefono;
-	private  List<String> urlImmagini;
+	private  String address;
+	private  Integer phoneNumber;
+	private  List<String> urlImages;
 	@OneToOne
 	private Menu menu;
 	@OneToMany
-	private List<Review> recensioni;
+	private List<Review> reviews;
 	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
-	}
-	public Integer getNumeroTelefono() {
-		return numeroTelefono;
-	}
-	public void setNumeroTelefono(Integer numeroTelefono) {
-		this.numeroTelefono = numeroTelefono;
-	}
-
-	public List<String> getUrlImmagini() {
-		return urlImmagini;
-	}
-	public void setUrlImmagini(List<String> urlImmagini) {
-		this.urlImmagini = urlImmagini;
-	}
+	
 	public Menu getMenu() {
 		return menu;
 	}
@@ -66,15 +42,39 @@ public class Restaurant {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public List<Review> getRecensioni() {
-		return recensioni;
+	public String getName() {
+		return name;
 	}
-	public void setRecensioni(List<Review> recensioni) {
-		this.recensioni = recensioni;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Integer getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(Integer phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public List<String> getUrlImages() {
+		return urlImages;
+	}
+	public void setUrlImages(List<String> urlImages) {
+		this.urlImages = urlImages;
+	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(indirizzo, nome);
+		return Objects.hash(address, name);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -85,7 +85,7 @@ public class Restaurant {
 		if (getClass() != obj.getClass())
 			return false;
 		Restaurant other = (Restaurant) obj;
-		return Objects.equals(indirizzo, other.indirizzo) && Objects.equals(nome, other.nome);
+		return Objects.equals(address, other.address) && Objects.equals(name, other.name);
 	}
 	
 	

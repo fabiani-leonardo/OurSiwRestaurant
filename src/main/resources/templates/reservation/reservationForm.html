@@ -12,13 +12,13 @@
 	<!-- reservation/reservationForm.html -->
 	<form th:action="@{/reservations/add}" th:object="${reservation}" method="post">
 	    <label>Data:</label>
-	    <input type="date" th:field="*{data}" 
+	    <input type="date" th:field="*{date}" 
 	           th:change="|window.location='?date='+this.value|"
 	           required />
 	    <br/><br/>
 
 	    <label>Ore disponibili:</label>
-	    <select th:field="*{ora}" required>
+	    <select th:field="*{hour}" required>
 	        <option 
 	          th:each="slot : ${slots}"
 	          th:value="${slot.time}"
@@ -30,13 +30,13 @@
 	    <br/><br/>
 
 	    <label>Numero persone:</label>
-	    <input type="number" th:field="*{numeroPersone}" min="1" max="20" required />
+	    <input type="number" th:field="*{numberOfPeople}" min="1" max="20" required />
 	    <br/><br/>
 
 	    <button type="submit">Prenota</button>
 	    
-	    <p th:if="${#fields.hasErrors('ora')}" 
-	       th:errors="*{ora}" style="color:red;"></p>
+	    <p th:if="${#fields.hasErrors('hour')}" 
+	       th:errors="*{hour}" style="color:red;"></p>
 	</form>
 
 </body>

@@ -15,11 +15,13 @@ public class MenuLine {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@Column(nullable = false)
-	private String nome;
+	private String name;
 	@Column(length= 250)
-	private String descrizione;
+	private String description;
 	@Column(nullable = false)
-	private int prezzo;
+	private int price;
+	@Column(nullable= false)
+	private String category;
 	
 	public Long getId() {
 		return id;
@@ -27,27 +29,33 @@ public class MenuLine {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getDescrizione() {
-		return descrizione;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public int getPrezzo() {
-		return prezzo;
+	public int getPrice() {
+		return price;
 	}
-	public void setPrezzo(int prezzo) {
-		this.prezzo = prezzo;
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome, prezzo);
+		return Objects.hash(description, id, name);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -58,8 +66,10 @@ public class MenuLine {
 		if (getClass() != obj.getClass())
 			return false;
 		MenuLine other = (MenuLine) obj;
-		return Objects.equals(nome, other.nome) && prezzo == other.prezzo;
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name);
 	}
+	
 	
 
 	

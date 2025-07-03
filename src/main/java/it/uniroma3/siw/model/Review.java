@@ -18,11 +18,11 @@ public class Review {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@Column(length= 2000)
-	private String commento;
+	private String comment;
 	@Column(nullable = false)
-	private int voto;
+	private int rating;
 	@Column(nullable = false)
-	private LocalDate data;
+	private LocalDate date;
 	
 	@OneToOne
 	@JoinColumn(name = "user_id", nullable=false)
@@ -34,23 +34,24 @@ public class Review {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCommento() {
-		return commento;
+	
+	public String getComment() {
+		return comment;
 	}
-	public void setCommento(String commento) {
-		this.commento = commento;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-	public int getVoto() {
-		return voto;
+	public int getRating() {
+		return rating;
 	}
-	public void setVoto(int voto) {
-		this.voto = voto;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDate() {
+		return date;
 	}
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	public User getUser() {
 		return user;

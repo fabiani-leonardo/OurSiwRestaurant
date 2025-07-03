@@ -17,14 +17,16 @@ public class Menu {
     private Long id;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)// orphanRemoval serve a eliminare le VoceMenu rimosse dalla lista anche dal database.
-	private List<MenuLine> vociMenu;
+	private List<MenuLine> menuLines;
 
-	public List<MenuLine> getVociMenu() {
-		return vociMenu;
+	
+
+	public List<MenuLine> getMenuLines() {
+		return menuLines;
 	}
 
-	public void setVociMenu(List<MenuLine> vociMenu) {
-		this.vociMenu = vociMenu;
+	public void setMenuLines(List<MenuLine> menuLines) {
+		this.menuLines = menuLines;
 	}
 
 	public Long getId() {

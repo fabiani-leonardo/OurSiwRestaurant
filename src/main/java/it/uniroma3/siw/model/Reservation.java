@@ -23,7 +23,7 @@ public class Reservation {
 	@Column(nullable = false)
 	private LocalTime hour;
 	@Column(nullable = false)
-	private int numeroPersone;
+	private int numberOfPeople;
 	
 	@ManyToOne
 	private User user;
@@ -54,11 +54,11 @@ public class Reservation {
 	}
 	
 	public int getNumberOfPeople() {
-		return numeroPersone;
+		return numberOfPeople;
 	}
 
-	public void setNumberOfPeople(int numeroPersone) {
-		this.numeroPersone = numeroPersone;
+	public void setNumberOfPeople(int numberOfPeople) {
+		this.numberOfPeople = numberOfPeople;
 	}
 
 	public User getUser() {
