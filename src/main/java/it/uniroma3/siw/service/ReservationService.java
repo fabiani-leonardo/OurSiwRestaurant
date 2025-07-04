@@ -35,16 +35,35 @@ public class ReservationService {
         List<Slot> slots = new ArrayList<>();
         LocalTime start = LocalTime.of(19, 0);
         LocalTime end   = LocalTime.of(22, 30);
-        for (LocalTime t = start; !t.isAfter(end); t = t.plusMinutes(30)) {
-            int used = reservationRepository.findByDateAndHour(date, t)
-                                 .stream()
-                                 .mapToInt(Reservation::getNumberOfPeople)
-                                 .sum();
-            slots.add(new Slot(t, MAX_PER_SLOT - used));
+
+        LocalTime current = start;
+        while (!current.isAfter(end)) {
+            // 1) recupero tutte le prenotazioni per questa data e quest’ora
+            List<Reservation> existingReservations =
+                reservationRepository.findByDateAndHour(date, current);
+
+            // 2) sommo manualmente quante persone ci sono già prenotate
+            int used = 0;
+            for (Reservation r : existingReservations) {
+                used += r.getNumberOfPeople();
+            }
+
+            // 3) calcolo i posti rimanenti
+            int remaining = MAX_PER_SLOT - used;
+
+            // 4) aggiungo lo slot alla lista
+            slots.add(new Slot(current, remaining));
+
+            // 5) passo al prossimo orario (+30 minuti)
+            current = current.plusMinutes(30);
         }
+
         return slots;
     }
 
-    /** DTO interno per Thymeleaf */
+
+    /*questo quì è la definizione di una classe chiamata Slot che ci serve per
+     * definire degli intervalli di tempo in cui prenotare che abbiano un int 
+     * di posti rimanenti prenotabili*/
     public static record Slot(LocalTime time, int remaining) {}
 }
