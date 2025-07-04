@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
     <title>ReservationForm</title>
     <link rel="stylesheet" th:href="@{/css/home.css}" />
@@ -11,6 +11,7 @@
 
 	<!-- reservation/reservationForm.html -->
 	<form th:action="@{/reservations/add}" th:object="${reservation}" method="post">
+		<label>Scegli la data:</label>
 		<input type="date"
 		       th:field="*{date}"
 		       onchange="window.location.href='/reservations/add?date='+this.value"
