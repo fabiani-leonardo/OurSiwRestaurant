@@ -17,17 +17,17 @@
 	           required />
 	    <br/><br/>
 
-	    <label>Ore disponibili:</label>
-	    <select th:field="*{hour}" required>
-	        <option 
-	          th:each="slot : ${slots}"
-	          th:value="${slot.time}"
-	          th:text="${#temporals.format(slot.time,'HH:mm')} + ' (' + slot.remaining + ' posti liberi)'"
-	          th:disabled="${slot.remaining == 0}"
-	          th:attr="style=${slot.remaining>0} ? 'color:blue;' : 'color:gray;'">
-	        </option>
-	    </select>
-	    <br/><br/>
+		<label>Ore disponibili:</label>
+		<select th:field="*{hour}" required>
+		  <option
+		    th:each="slot : ${slots}"
+		    th:value="${slot.time}"
+		    th:text="|${#temporals.format(slot.time,'HH:mm')} (${slot.remaining} posti liberi)|"
+		    th:disabled="${slot.remaining == 0}"
+		    th:attr="style=${slot.remaining > 0} ? 'color:blue;' : 'color:gray;'">
+		  </option>
+		</select>
+		<br/><br/>
 
 	    <label>Numero persone:</label>
 	    <input type="number" th:field="*{numberOfPeople}" min="1" max="20" required />
