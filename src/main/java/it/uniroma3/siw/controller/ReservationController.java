@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Reservation;
@@ -48,14 +50,22 @@ public class ReservationController {
     }
 
     @GetMapping("/add")
-    public String showReservationForm(Model model) {
+    public String showReservationForm(
+        @RequestParam(name="date", required=false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        LocalDate date,
+        Model model) {
+    	
+        LocalDate chosen = (date != null) ? date : LocalDate.now();
+
         Reservation reservation = new Reservation();
-        reservation.setDate(LocalDate.now()); // default today
-        
+        reservation.setDate(chosen);
+
         model.addAttribute("reservation", reservation);
-        model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
+        model.addAttribute("slots", reservationService.getSlotAvailability(chosen));
         return "reservation/reservationForm";
     }
+
 
     @PostMapping("/add")
     public String processAddReservation(

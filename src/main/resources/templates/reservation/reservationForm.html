@@ -11,10 +11,10 @@
 
 	<!-- reservation/reservationForm.html -->
 	<form th:action="@{/reservations/add}" th:object="${reservation}" method="post">
-	    <label>Data:</label>
-	    <input type="date" th:field="*{date}" 
-	           th:change="|window.location='?date='+this.value|"
-	           required />
+		<input type="date"
+		       th:field="*{date}"
+		       onchange="window.location.href='/reservations/add?date='+this.value"
+		       required />
 	    <br/><br/>
 
 		<label>Ore disponibili:</label>
