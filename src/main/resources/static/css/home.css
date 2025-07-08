@@ -90,7 +90,11 @@ body {
   
 }
 .contenuto-destra a::before {
-  content: "*"; /* simbolo prima dei link*/
+  content: "* "; /* simbolo prima dei link*/
+  font-size: 1rem;
+}
+.contenuto-destra a::after {
+  content: " *"; /* simbolo dopo link */
   font-size: 1rem;
 }
 .contenuto-destra a {
