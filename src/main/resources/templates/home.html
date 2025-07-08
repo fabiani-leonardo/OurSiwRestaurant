@@ -9,44 +9,37 @@
 </head>
 
 <body>
-	<header>
-	    <!-- Se l'utente è autenticato -->
-	    <div th:if="${userDetails}">							<!-- dal controller sto passando questa variabile offerta da Spring Security che ci fornisce i dati dell'utente autenticato oppure null se non si è auteticato' -->
-	        <span th:text="${userDetails.username}"></span>		<!-- stampiamo lo username dell'utente autenticato' -->
-	        <a href="/logout">Logout</a>						<!-- diamo all'utente autenticato la possibilità di uscire dal sistema' -->
-	    </div>
-
-	    <!-- Se l'utente NON è autenticato -->
-	    <div th:if="${userDetails == null}">					<!-- Se l'utente non è autenticat questo oggetto è null come detto sopra' -->
-	        <a href="/login">Login</a>							<!-- visto che non è autenticato offriamo la possibilità di loggarsi -->
-	        <a href="/register">Register</a>					<!-- o registrarsi -->
-	    </div>
-	</header>
-	<h1>Elisyum</h1>
-	<div>
-		<p>Via ...</p>
-	</div>
-	<div>
-		<p> 393 ...</p>
-	</div>
-	<div>
-		<a href="/menuLine">Menu</a>
-	</div>
-	<div>
-		<a href="/reservations">Prenota ora</a>
-	</div>
-	<div>
-		<a href="/reviews">Recensioni</a>
-	</div>
-	<!--		<div class="carousel">
-			<img src="/images/ristorante1.jpg" alt="Sala 1" />
-			<img src="/images/ristorante2.jpg" alt="Sala 2" />
-			<img src="/images/ristorante3.jpg" alt="Cucina" />
+	<!-- Barra in alto -->
+	<div class="barra-superiore">
+		<div class="link-superiori">
+			<!-- Se l'utente è autenticato -->
+			<span th:if="${userDetails}"> <!-- dal controller sto passando questa variabile offerta da Spring Security 
+		che ci fornisce i dati dell'utente autenticato oppure null se non si è auteticato' -->
+				<span th:text="${userDetails.username}"></span> <!-- stampiamo lo username dell'utente autenticato' -->
+				<a href="/logout">Logout</a> <!-- diamo all'utente autenticato la possibilità di uscire dal sistema' -->
+			</span>
+			<!-- Se l'utente NON è autenticato -->
+			<span th:if="${userDetails == null}"> <!-- Se l'utente non è autenticat questo oggetto è null -->
+				<a href="/login">Login</a> <!-- visto che non è autenticato offriamo la possibilità di loggarsi -->
+				<a href="/register">Registrati</a> <!-- o registrarsi -->
+			</span>
 		</div>
-		oppure se le immagini sono nel database
-		<div th:each="img : ${ristorante.immagini}">
-			<img th:src="@{'/images/' + ${img}}" alt="immagine" />
-		</div>-->
+	</div>
+
+	<!-- Corpo diviso -->
+	<div class="contenitore-principale">
+		<div class="sfondo-sinistra"></div>
+		<div class="contenuto-destra">
+			<div class="titolo">
+				<h1>Elysium</h1>
+			</div>
+			<p>Via ...</p>
+			<p>393 ...</p>
+			<a href="/menuLine">Menu</a>
+			<a href="/reservations">Prenota ora</a>
+			<a href="/reviews">Recensioni</a>
+		</div>
+	</div>
 </body>
 
 </html>

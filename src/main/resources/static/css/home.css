@@ -1,99 +1,113 @@
-/* Font elegante e colori sobri */
+/* ===== BASE ===== */
+/* Imposta margini a 0, font principale serif elegante e colore testo scuro */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-    background-color: #f8f5f0;
-    color: #333;
-    line-height: 1.6;
+  margin: 0;
+  font-family: 'Georgia', serif;
+  color: #333;
 }
 
-/* Header con separazione elegante */
-header {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #fff;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #e0dcd5;
-    font-size: 0.95rem;
+/* ===== BARRA SUPERIORE ===== */
+/* Barra in alto larga tutta la pagina, alta 50px, con sfondo chiaro e bordo sottile */
+.barra-superiore {
+  width: 100%;                    /* tutta la larghezza */
+  height: 50px;                   /* altezza fissa */
+  background-color: #f5f3ef;      /* colore chiaro di sfondo */
+  border-bottom: 1px solid #ddd; /* bordo inferiore sottile */
+  
+  /* usa flexbox per posizionare i link a destra, centrati verticalmente */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 0rem;              /* padding orizzontale per distanziare contenuti dai bordi */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* leggera ombra per profondità */
+  
+  /* posizione fissa in alto sempre visibile */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;                   /* sopra gli altri elementi */
 }
 
-header a {
-    color: #7c4d25;
-    text-decoration: none;
-    margin-left: 1rem;
-    transition: color 0.3s ease;
+/* Stile link nella barra superiore */
+.barra-superiore a {
+  font-size: 0.85rem;            /* dimensione testo un po' piccola */
+  color: #7c4d25;                /* colore marrone caldo */
+  text-decoration: none;         /* rimuove sottolineatura */
+  margin-left: 0.5rem;             /* spazio tra i link */
+  margin-right: 2 rem;
 }
 
-header a:hover {
-    color: #a2673c;
+/* Effetto hover sui link della barra */
+.barra-superiore a:hover {
+  color: #a2673c;                /* colore marrone più chiaro al passaggio del mouse */
 }
 
-/* Titolo del ristorante */
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin: 2rem 0 1rem;
-    color: #5a3825;
-    letter-spacing: 2px;
+/* ===== CONTENITORE PRINCIPALE ===== */
+/* Contenitore che tiene la parte sinistra e destra, con flexbox */
+.contenitore-principale {
+  display: flex;                               /* disposizione orizzontale dei figli */
+  height: 100vh;                /* altezza: altezza schermo meno barra in alto */
+  margin-top: 50px;                            /* sposta contenuto sotto la barra fissa */
 }
 
-/* Sezione contatti */
-div p {
-    text-align: center;
-    margin: 0.3rem 0;
-    font-size: 1.1rem;
+/* ===== SFONDO SINISTRA ===== */
+/* Div con immagine di sfondo a sinistra che occupa 3/5 dello spazio */
+.sfondo-sinistra {
+  flex: 3;                                    /* prende 3 parti su 5 */
+  background-image: url('/images/sala.jpeg'); /* immagine di sfondo */
+  background-size: cover;                      /* immagine copre tutto il contenitore */
+  background-position: center left;            /* immagine allineata a sinistra e centrata verticalmente */
 }
 
-/* Menu principale */
-div a {
-    display: block;
-    text-align: center;
-    margin: 1rem auto;
-    padding: 0.8rem 2rem;
-    width: fit-content;
-    font-size: 1.1rem;
-    background-color: #7c4d25;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: background-color 0.3s ease, transform 0.2s;
+/* ===== CONTENUTO DESTRA ===== */
+/* Div a destra che contiene testo e link, occupa 2/5 dello spazio */
+.contenuto-destra {
+  flex: 2;                                   /* prende 2 parti su 5 */
+  display: flex;                             /* usa flexbox */
+  flex-direction: column;                    /* elementi disposti verticalmente */
+  justify-content: center;                   /* centra verticalmente */
+  align-items: center;                       /* centra orizzontalmente */
+  gap: 1rem;                                /* spazio verticale tra gli elementi */
+  padding: 2rem;                            /* spazio interno attorno al contenuto */
+  text-align: center;                       /* testo centrato */
+  background-color: #f7e7e1;                /* sfondo rosa cipria chiaro */
 }
 
-div a:hover {
-    background-color: #a2673c;
-    transform: scale(1.05);
+/* Titolo principale dentro contenuto destra */
+.contenuto-destra h1 {
+  font-family: 'Brush Script MT', cursive;  /* font floreale elegante */
+  font-size: 3rem;                          /* dimensione grande per il titolo */
+  margin-bottom: 1rem;                      /* margine sotto per distanziare dal resto */
+  color: #7c4d25;                          /* colore marrone caldo */
 }
 
-/* Sezione immagini/carousel */
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
+/* Paragrafi e link dentro contenuto destra */
+.contenuto-destra p{
+  font-family: 'Brush Script MT', cursive; /* stesso font elegante */
+  font-size: 0.1 rem;                       /* dimensione testo media */
+  margin: 0 0 ;                              /* nessun margine */
+  color: #7c4d25; 
+  
 }
-
-.carousel img {
-    width: 300px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
+.contenuto-destra a::before {
+  content: "*"; /* simbolo prima dei link*/
+  font-size: 1rem;
 }
+.contenuto-destra a {
+  font-family: 'Brush Script MT', cursive; /* stesso font elegante */
+  font-size: 1.5rem;                       /* dimensione testo media */
+  margin: 0;                              /* nessun margine */
+  color: #7c4d25;                        /* colore marrone */
 
-/* Responsive */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
-    }
 
-    div a {
-        padding: 0.6rem 1.5rem;
-        font-size: 1rem;
-    }
-
-    .carousel img {
-        width: 250px;
-    }
+/* Link dentro contenuto destra */
+  
+  text-decoration: none;                   /* rimuove sottolineatura */
+  cursor: pointer;                         /* cambia cur*/
+}
+/*i link cambiano colore al passaggio del mouse*/
+.contenuto-destra a:hover {
+  color: #c07e6f; /* un rosa più acceso o contrastante */
+  transform: translateX(4px);
+  text-decoration: underline;
 }
