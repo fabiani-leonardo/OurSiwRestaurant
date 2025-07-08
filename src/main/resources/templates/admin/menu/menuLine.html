@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Voce del menu</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+
+	<div th:if="${menuLine}">
+		<h1 th:text="${menuLine.name}">nome voce del menu</h1>
+		<div>Categoria: <span th:text="  ${menuLine.category} ">categoria</span></div>
+		<div>Prezzo: <span th:text="  ${menuLine.price} +' ' +'euro' ">1000</span>
+		</div>
+
+
+		<div th:if="${menuLine.description}">
+			Descrizione: <span th:text="${menuLine.description}">descrizione</span>
+		</div>
+	</div>
+
+	<div th:unless="${menuLine}">Non esiste</div>
+
+</body>
+
+</html>
