@@ -2,7 +2,7 @@
 /* Imposta margini a 0, font principale serif elegante e colore testo scuro */
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
+  font-family:  'Brush Script MT', cursive; 
   color: #333;
 }
 

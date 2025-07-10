@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,32 +59,55 @@ public class MenuController {
 		}
 	}
 
-	// Risponde con con una pagina che mostra la lista di tutti i film
+	//metodo di supporto per i due metodi successivi
+	
+	private void addMenuLinesToModel(Model model) {
+	    List<MenuLine> allMenuLines = (List<MenuLine>) this.menuLineService.getAllMenuLine();
 
+	    List<MenuLine> primi = allMenuLines.stream()
+	            .filter(m -> m.getCategory().equalsIgnoreCase("primo"))
+	            .toList();
+
+	    List<MenuLine> secondi = allMenuLines.stream()
+	            .filter(m -> m.getCategory().equalsIgnoreCase("secondo"))
+	            .toList();
+
+	    List<MenuLine> dolci = allMenuLines.stream()
+	            .filter(m -> m.getCategory().equalsIgnoreCase("dolce"))
+	            .toList();
+
+	    List<MenuLine> bevande = allMenuLines.stream()
+	            .filter(m -> m.getCategory().equalsIgnoreCase("bevanda"))
+	            .toList();
+
+	    model.addAttribute("primi", primi);
+	    model.addAttribute("secondi", secondi);
+	    model.addAttribute("dolci", dolci);
+	    model.addAttribute("bevande", bevande);
+	}
+
+	// Risponde con con una pagina che mostra la lista di tutti i menuLine 
+
+	// Pagina pubblica del menu
 	@GetMapping("/menuLine")
 	public String showMenuLine(Model model) {
-
-		// recupera tutte le menuLine dal database
-		List<MenuLine> allMenuLines = (List<MenuLine>) this.menuLineService.getAllMenuLine();
-
-		// Filtra le menuLine per categoria
-		List<MenuLine> primi = allMenuLines.stream().filter(m -> m.getCategory().equalsIgnoreCase("primo")).toList();
-
-		List<MenuLine> secondi = allMenuLines.stream().filter(m -> m.getCategory().equalsIgnoreCase("secondo"))
-				.toList();
-
-		List<MenuLine> dolci = allMenuLines.stream().filter(m -> m.getCategory().equalsIgnoreCase("dolce")).toList();
-
-		List<MenuLine> bevande = allMenuLines.stream().filter(m -> m.getCategory().equalsIgnoreCase("bevanda"))
-				.toList();
-
-		// aggiungi le liste al model per Thymeleaf
-		model.addAttribute("primi", primi);
-		model.addAttribute("secondi", secondi);
-		model.addAttribute("dolci", dolci);
-		model.addAttribute("bevande", bevande);
-
-		return "menu/menuHome.html";
+	    addMenuLinesToModel(model);
+	    return "menu/menuHome.html";
 	}
+
+	// Pagina admin per gestire le voci del menu
+	@GetMapping("/admin/menu/adminMenuLineUpgrade")
+	public String showMenuLinesForAdmin(Model model) {
+	    addMenuLinesToModel(model);
+	    return "admin/menu/adminMenuLineUpgrade.html";
+	}
+
+	//metodo per eliminare una singola menuLine
+	@GetMapping("/admin/menu/deleteMenuLine/{id}")
+	public String deleteMenuLine(@PathVariable("id") Long id) {
+	    this.menuLineService.remove(id);
+	    return "redirect:/admin/menu/adminMenuLineUpgrade";
+	}
+
 
 }

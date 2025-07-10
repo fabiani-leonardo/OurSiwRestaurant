@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Gestione Menu Admin</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+
+	<h1>Gestione Menu - Admin</h1>
+
+	<!-- Sezione PRIMI -->
+	<h2>Primi</h2>
+	<ul>
+		<li th:each="linea : ${primi}">
+			<strong th:text="${linea.name}">Nome</strong> -
+			<span th:text="${linea.description}">Descrizione</span> -
+			<span th:text="${linea.price} + ' euro'">Prezzo</span>
+			|
+			<a th:href="@{'/admin/menu/deleteMenuLine/' + ${linea.id}}">
+				Cancella
+			</a>
+		</li>
+	</ul>
+
+	<!-- Sezione SECONDI -->
+	<h2>Secondi</h2>
+	<ul>
+		<li th:each="linea : ${secondi}">
+			<strong th:text="${linea.name}">Nome</strong> -
+			<span th:text="${linea.description}">Descrizione</span> -
+			<span th:text="${linea.price} + ' euro'">Prezzo</span>
+			|
+			<a th:href="@{'/admin/menu/deleteMenuLine/' + ${linea.id}}">
+				Cancella
+			</a>
+		</li>
+	</ul>
+
+	<!-- Sezione DOLCI -->
+	<h2>Dolci</h2>
+	<ul>
+		<li th:each="linea : ${dolci}">
+			<strong th:text="${linea.name}">Nome</strong> -
+			<span th:text="${linea.description}">Descrizione</span> -
+			<span th:text="${linea.price} + ' euro'">Prezzo</span>
+			|
+			<a th:href="@{'/admin/menu/deleteMenuLine/' + ${linea.id}}">
+				Cancella
+			</a>
+		</li>
+	</ul>
+
+	<!-- Sezione BEVANDE -->
+	<h2>Bevande</h2>
+	<ul>
+		<li th:each="linea : ${bevande}">
+			<strong th:text="${linea.name}">Nome</strong> -
+			<span th:text="${linea.description}">Descrizione</span> -
+			<span th:text="${linea.price} + ' euro'">Prezzo</span>
+			|
+			<a th:href="@{'/admin/menu/deleteMenuLine/' + ${linea.id}}">
+				Cancella
+			</a>
+		</li>
+	</ul>
+
+	<br>
+	<a href="/admin/menu/adminMenuHome">Torna alla Home Admin Menu</a>
+
+</body>
+
+</html>

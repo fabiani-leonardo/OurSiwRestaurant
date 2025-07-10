@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+
 <head>
-	<title>Menu</title>
-	<meta charset="UTF-8">
+	<title>
+		Menu-HomePage
+	</title>
+	<link rel="stylesheet" href="/css/menu.css" />
 </head>
 
 <body>
 
-	<h1>Menu</h1>
+	<div class="decorazione1"></div>
+	<div class="menu-container">
 
-	<!-- Sezione PRIMI -->
-	<h2>Primi</h2>
-	<ul>
-		<li th:each="linea : ${primi}">
-			<strong th:text="${linea.name}">Nome</strong> -
-			<span th:text="${linea.description}">Descrizione</span> -
-			<span th:text="${linea.price} + ' euro'">Prezzo</span>
-		</li>
-	</ul>
+		<h1 class="titolo-menu">Menu</h1>
 
-	<!-- Sezione SECONDI -->
-	<h2>Secondi</h2>
-	<ul>
-		<li th:each="linea : ${secondi}">
-			<strong th:text="${linea.name}">Nome</strong> -
-			<span th:text="${linea.description}">Descrizione</span> -
-			<span th:text="${linea.price} + ' euro'">Prezzo</span>
-		</li>
-	</ul>
 
-	<!-- Sezione DOLCI -->
-	<h2>Dolci</h2>
-	<ul>
-		<li th:each="linea : ${dolci}">
-			<strong th:text="${linea.name}">Nome</strong> -
-			<span th:text="${linea.description}">Descrizione</span> -
-			<span th:text="${linea.price} + ' euro'">Prezzo</span>
-		</li>
-	</ul>
+		<!-- Sezione PRIMI -->
+		<h2>Primi</h2>
+		<ul>
+			<li th:each="linea : ${primi}">
+				<div class="piatto-intestazione">
+					<strong th:text="${linea.name}">Nome</strong>
+					<span class="prezzo" th:text="${linea.price} + ' euro'">Prezzo</span>
+				</div>
+				<div class="descrizione" th:text="${linea.description}">Descrizione</div>
+			</li>
+		</ul>
 
-	<!-- Sezione BEVANDE -->
-	<h2>Bevande</h2>
-	<ul>
-		<li th:each="linea : ${bevande}">
-			<strong th:text="${linea.name}">Nome</strong> -
-			<span th:text="${linea.description}">Descrizione</span> -
-			<span th:text="${linea.price} + ' euro'">Prezzo</span>
-		</li>
-	</ul>
+		<!-- Sezione SECONDI -->
+		<h2>Secondi</h2>
+		<ul>
+			<li th:each="linea : ${secondi}">
+				<div class="piatto-intestazione">
+					<strong th:text="${linea.name}">Nome</strong>
+					<span class="prezzo" th:text="${linea.price} + ' euro'">Prezzo</span>
+				</div>
+				<div class="descrizione" th:text="${linea.description}">Descrizione</div>
+			</li>
+		</ul>
+
+		<!-- Sezione DOLCI -->
+		<h2>Dolci</h2>
+		<ul>
+			<li th:each="linea : ${dolci}">
+				<div class="piatto-intestazione">
+					<strong th:text="${linea.name}">Nome</strong>
+					<span class="prezzo" th:text="${linea.price} + ' euro'">Prezzo</span>
+				</div>
+				<div class="descrizione" th:text="${linea.description}">Descrizione</div>
+			</li>
+		</ul>
+
+		<!-- Sezione BEVANDE -->
+		<h2>Bevande</h2>
+		<ul>
+			<li th:each="linea : ${bevande}">
+				<div class="piatto-intestazione">
+					<strong th:text="${linea.name}">Nome</strong>
+					<span class="prezzo" th:text="${linea.price} + ' euro'">Prezzo</span>
+				</div>
+				<div class="descrizione" th:text="${linea.description}">Descrizione</div>
+			</li>
+		</ul>
 
 </body>
 

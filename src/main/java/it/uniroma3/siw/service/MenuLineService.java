@@ -27,6 +27,10 @@ public class MenuLineService {
 		return this.menuLineRepository.findAll();
 	}
 	
+	public void remove(Long id) {
+		this.menuLineRepository.deleteById(id);
+	}
+	
 	
     
 }
