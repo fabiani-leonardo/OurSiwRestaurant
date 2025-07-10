@@ -10,15 +10,14 @@
 </head>
 
 <body>
-
-	<div class="decorazione1"></div>
 	<div class="menu-container">
-
-		<h1 class="titolo-menu">Menu</h1>
+		<div class="decorazione1"></div>
+		<div class="decorazione2"></div>
+		<div class="titolo-menu">Menu</div>
 
 
 		<!-- Sezione PRIMI -->
-		<h2>Primi</h2>
+		<div class=sezione>Primi</div>
 		<ul>
 			<li th:each="linea : ${primi}">
 				<div class="piatto-intestazione">
@@ -30,7 +29,7 @@
 		</ul>
 
 		<!-- Sezione SECONDI -->
-		<h2>Secondi</h2>
+		<div class=sezione>Secondi</div>
 		<ul>
 			<li th:each="linea : ${secondi}">
 				<div class="piatto-intestazione">
@@ -42,7 +41,7 @@
 		</ul>
 
 		<!-- Sezione DOLCI -->
-		<h2>Dolci</h2>
+		<div class=sezione>Dolci</div>
 		<ul>
 			<li th:each="linea : ${dolci}">
 				<div class="piatto-intestazione">
@@ -54,7 +53,7 @@
 		</ul>
 
 		<!-- Sezione BEVANDE -->
-		<h2>Bevande</h2>
+		<div class=sezione>Bevande</div>
 		<ul>
 			<li th:each="linea : ${bevande}">
 				<div class="piatto-intestazione">

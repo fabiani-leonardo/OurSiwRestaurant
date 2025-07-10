@@ -74,9 +74,9 @@ body {
 }
 
 /* Titolo principale dentro contenuto destra */
-.contenuto-destra h1 {
+.contenuto-destra span {
   font-family: 'Brush Script MT', cursive;  /* font floreale elegante */
-  font-size: 3rem;                          /* dimensione grande per il titolo */
+  font-size: 5rem;                          /* dimensione grande per il titolo */
   margin-bottom: 1rem;                      /* margine sotto per distanziare dal resto */
   color: #7c4d25;                          /* colore marrone caldo */
 }

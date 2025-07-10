@@ -1,95 +1,96 @@
 body {
-  margin: 0;
-  font-family: 'Georgia', serif; /* font elegante */
-  background-color: #f7e7e1; /* sfondo rosa cipria chiarissimo */
-  color: #7c4d25;            /* marrone elegante */
+	margin: 0;
+	background-color: #f7e7e1;/* sfondo rosa cipria chiarissimo */
+	color: #7c4d25; /* marrone elegante */
 }
 
 /* Contenitore generale */
 .menu-container {
-  max-width: 1000px;       /* limita la larghezza */
-  margin: 0 auto;         /* centra orizzontalmente */
-  padding: 2rem;
-  position: relative; /* per tenere insieme le decorazioni se vuoi absolute */
+	max-width: 1000px;/* limita la larghezza */
+	margin: 0 auto; /* centra orizzontalmente */
+	padding: 2rem;
+	position: relative; /* per tenere insieme le decorazioni se vuoi absolute */
 }
 
 /* Decorazione floreale in alto a sinistra */
 .decorazione1 {
-  width: 400px;
-  height: 300px;
-  background-image: url('/images/decorazioneMenu.webp'); 
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
-  z-index: 1;
-  top: 0px;
-  left: 0px;
+	width: 400px;
+	height: 300px;
+	background-image: url('/images/decorazioneMenu.webp');
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	left: 0px;
 }
 
 
 
 /* Titolo Menu */
 .titolo-menu {
-  font-family: 'Brush Script MT', cursive;
-  font-size: 5rem;
-  text-align: center;
-  margin-top: 80px; /* per lasciare spazio alla decorazione */
-  margin-bottom: 2rem;
+	font-family: 'Brush Script MT', cursive;
+	font-size: 5rem;
+	text-align: center;
+	margin-top: 80px;/* per lasciare spazio alla decorazione */
+	margin-bottom: 2rem;
 }
 
 /* Sottosezioni */
-h2 {
-  font-family:'Brush Script MT', cursive;
-  font-size: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  color: #7c4d25;
-  text-align: center;
+.sezione {
+	font-family: 'Brush Script MT', cursive;
+	font-size: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+	color: #7c4d25;
+	text-align: center;
 }
 
 /* Lista menu */
 ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 0.5rem;
+	list-style: none;
+	padding-left: 0;
+	margin-top: 0.5rem;
 }
 
 /* Singolo piatto */
 li {
-  margin-bottom: 1.2rem;
+	margin-bottom: 0.2rem;
 }
 
 /* Contenitore nome + prezzo */
 .piatto-intestazione {
-  display: flex;
-  justify-content: flex-start; /* entrambi a sinistra */
-  align-items: baseline;
-  gap: 0.5rem; /* spazio tra nome e prezzo */
-  margin-bottom: 0.2rem;
+	display: flex;
+	justify-content: center;/* entrambi a sinistra */
+	align-items: baseline;
+	gap: 0.5rem; /* spazio tra nome e prezzo */
+	margin-bottom: 0rem;
+	line-height: 1;
 }
 
 /* Nome piatto */
 .piatto-intestazione strong {
-    font-family:italic;
-  font-weight: bold;
-  font-size: 1.3rem;
+	font-family: 'Brush Script MT', cursive;
+	font-weight: normal;
+	font-size: 1.3rem;
 }
 
 /* Prezzo */
 .piatto-intestazione .prezzo {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 0.5 rem;
-  color: #a2673c;
+	font-family: 'Brush Script MT', cursive;
+	font-weight: normal;
+	font-size: 0.5;
+	color: #a2673c;
 }
 
 /* Descrizione */
 .descrizione {
-  font-style: italic;
-  font-size: 1rem;
-  color: #5a3d1b;
-  margin-left: 0.2rem;
+	
+	font-family: 'Brush Script MT', cursive;
+	text-align: center;
+	font-size: 1rem;
+	color: #5a3d1b;
+	margin-left: 0.2rem;
+	margin-top: 0rem; 
+	line-height: 1.2;
 }
-
-
-

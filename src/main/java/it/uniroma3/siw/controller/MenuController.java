@@ -24,8 +24,10 @@ public class MenuController {
 	@Autowired
 	private MenuLineService menuLineService;
 
+	
+	/********************************************** CREAZIONE MENU ***********************************************/
 	// riporta alla home del menu per l'admin
-	@GetMapping(value = "/admin/menu/adminMenuHome")
+	@GetMapping("/admin/menu/adminMenuHome")
 	public String getAdminMenuHome() {
 		return "admin/menu/adminMenuHome.html";
 	}
@@ -59,6 +61,9 @@ public class MenuController {
 		}
 	}
 
+	/**********************************************VISUALIZZAZIONE MENU***********************************************/
+	
+	
 	//metodo di supporto per i due metodi successivi
 	
 	private void addMenuLinesToModel(Model model) {
@@ -94,6 +99,8 @@ public class MenuController {
 	    addMenuLinesToModel(model);
 	    return "menu/menuHome.html";
 	}
+	
+	/**********************************************AGGIORNAMENTI MENU***********************************************/
 
 	// Pagina admin per gestire le voci del menu
 	@GetMapping("/admin/menu/adminMenuLineUpgrade")
@@ -108,6 +115,36 @@ public class MenuController {
 	    this.menuLineService.remove(id);
 	    return "redirect:/admin/menu/adminMenuLineUpgrade";
 	}
+	
+	// Mostra il form precompilato per modificare una MenuLine esistente
+	@GetMapping("/admin/menu/formUpdateMenuLine/{id}")
+	public String showEditForm(@PathVariable("id") Long id, Model model) {
+	    MenuLine menuLine = this.menuLineService.findById(id);
+	    if (menuLine != null) {
+	        model.addAttribute("menuLine", menuLine);
+	        return "admin/menu/formUpdateMenuLine.html";
+	    } else {
+	        //  l'ID non esista
+	        return "redirect:/admin/menu/adminMenuLineUpgrade";
+	    }
+	}
+	
+	
+	@PostMapping("/admin/menu/editMenuLine/{id}")
+	public String editMenuLine(@PathVariable("id") Long id,
+	                           @Valid @ModelAttribute("menuLine") MenuLine menuLine,
+	                           BindingResult bindingResult,
+	                           Model model) {
+	    if (bindingResult.hasErrors()) {
+	        return "admin/menu/formUpdateMenuLine.html";
+	    } else {
+	        menuLine.setId(id);  // assicuriamoci che l'ID sia quello giusto
+	        this.menuLineService.save(menuLine); // salva (update)
+	        return "redirect:/admin/menu/adminMenuLineUpgrade";
+	    }
+	}
+
+
 
 
 }
