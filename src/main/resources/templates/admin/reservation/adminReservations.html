@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazioni per data</title>
+</head>
+<body>
+    <h1>Prenotazioni per data</h1>
+
+    <form method="get" th:action="@{/reservations/admin}">
+        <label>Seleziona una data:</label>
+        <input type="date" name="date"
+               th:value="${#temporals.format(selectedDate, 'yyyy-MM-dd')}"
+               required />
+        <button type="submit">Cerca</button>
+    </form>
+
+    <div th:if="${#maps.isEmpty(groupedReservations)}">
+        <p>Nessuna prenotazione per questa data.</p>
+    </div>
+
+    <div th:if="${!#maps.isEmpty(groupedReservations)}">
+        <div th:each="entry : ${groupedReservations}">
+            <h2 th:text="${#temporals.format(entry.key, 'HH:mm')}"></h2>
+            <ul>
+                <li th:each="res : ${entry.value}">
+                    <span th:text="${res.user.name} + ' ' + ${res.user.surname} + ' - ' + ${res.numberOfPeople} + ' persone'"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

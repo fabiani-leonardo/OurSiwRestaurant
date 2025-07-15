@@ -1,0 +1,179 @@
+/* ===== GENERALI ===== */
+body {
+  font-family: 'Brush Script MT', cursive;
+  background-color: #f7e7e1;
+  color: #7c4d25;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #7c4d25;
+}
+
+/* ===== MESSAGGIO SENZA PRENOTAZIONI ===== */
+p {
+  font-size: 1.3rem;
+}
+
+/* ===== TABELLA PRENOTAZIONI ===== */
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+  background-color: #fffaf7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: #e8d4c3;
+}
+
+th, td {
+  padding: 1rem;
+  border-bottom: 1px solid #d5bda3;
+  font-size: 1.1rem;
+}
+
+th {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+td {
+  color: #5f3d2a;
+}
+
+/* ===== BOTTONE "ANNULLA" NELLA LISTA ===== */
+form button {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.2rem;
+  padding: 0.3rem 1rem;
+  background-color: transparent;
+  color: #a2673c;
+  border: 1px solid #a2673c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #f0d5c9;
+}
+
+/* ===== LINK "NUOVA PRENOTAZIONE" ===== */
+a button {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.7rem;
+  color: #7c4d25;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+a button::before {
+  content: "* ";
+}
+
+a button::after {
+  content: " *";
+}
+
+a button:hover {
+  color: #c07e6f;
+  transform: translateX(4px);
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+/* ===== FORM PRENOTAZIONE ===== */
+form.form-prenotazione {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+form.form-prenotazione label {
+  font-size: 1.5rem;
+}
+
+form.form-prenotazione input[type="date"],
+form.form-prenotazione input[type="number"],
+form.form-prenotazione select {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.2rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid #d5bda3;
+  border-radius: 5px;
+  background-color: #fffaf7;
+  color: #7c4d25;
+  width: 250px;
+  text-align: center;
+}
+
+/* Pulsante di invio del form */
+form.form-prenotazione button[type="submit"] {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.7rem;
+  color: #7c4d25;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+form.form-prenotazione button[type="submit"]::before {
+  content: "* ";
+}
+
+form.form-prenotazione button[type="submit"]::after {
+  content: " *";
+}
+
+form.form-prenotazione button[type="submit"]:hover {
+  color: #c07e6f;
+  transform: translateX(4px);
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+/* ===== MESSAGGI DI ERRORE ===== */
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* ===== HEADER CON USERNAME E LINK ===== */
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: #f7e7e1;
+  box-sizing: border-box;
+}
+
+.user-info span {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.3rem;
+  color: #7c4d25;
+}
+
+.home-link a {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.3rem;
+  color: #7c4d25;
+  text-decoration: none;
+}
+
+.home-link a:hover {
+  text-decoration: underline;
+  color: #c07e6f;
+}

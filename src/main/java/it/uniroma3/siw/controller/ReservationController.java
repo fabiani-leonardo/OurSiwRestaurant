@@ -1,7 +1,11 @@
 package it.uniroma3.siw.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -131,6 +135,27 @@ public class ReservationController {
         }
 
         return "redirect:/reservations";
+    }
+
+    //ADMIN
+    
+    @GetMapping("/admin")
+    public String showReservationsByDate(
+        @RequestParam(name = "date", required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        LocalDate date,
+        Model model) {
+
+        LocalDate selectedDate = (date != null) ? date : LocalDate.now();
+        List<Reservation> reservations = reservationService.getByDate(selectedDate);
+
+        // Raggruppa per orario
+        Map<LocalTime, List<Reservation>> groupedByHour = reservations.stream()
+            .collect(Collectors.groupingBy(Reservation::getHour, TreeMap::new, Collectors.toList()));
+
+        model.addAttribute("selectedDate", selectedDate);
+        model.addAttribute("groupedReservations", groupedByHour);
+        return "/admin/reservation/adminReservations";
     }
 
 }

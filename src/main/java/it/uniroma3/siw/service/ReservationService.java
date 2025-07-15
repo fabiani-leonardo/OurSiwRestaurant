@@ -76,4 +76,9 @@ public class ReservationService {
         reservationRepository.delete(reservation);
     }
 
+    public List<Reservation> getByDate(LocalDate date) {
+        return reservationRepository.findByDate(date);
+    }
+
+
 }

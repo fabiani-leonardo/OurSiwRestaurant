@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Le mie prenotazioni</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/reservations.css}" />
 </head>
 <body>
+	<header class="reservation-header">
+	    <div class="user-info">
+	        <span th:text="${#authentication.name}">Username</span>
+	    </div>
+	    <div class="home-link">
+	        <a th:href="@{/}">Torna alla Home</a>
+	    </div>
+	</header>
+
+	
     <h1>Le tue prenotazioni</h1>
 
     <div th:if="${reservations.isEmpty()}">

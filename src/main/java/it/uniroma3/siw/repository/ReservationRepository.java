@@ -14,4 +14,5 @@ import it.uniroma3.siw.model.User;
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
     List<Reservation> findByUser(User user);
     List<Reservation> findByDateAndHour(LocalDate date, LocalTime hour);
+	List<Reservation> findByDate(LocalDate date);
 }
