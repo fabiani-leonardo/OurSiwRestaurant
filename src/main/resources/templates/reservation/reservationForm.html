@@ -49,6 +49,10 @@
 	    
 	    <p th:if="${#fields.hasErrors('hour')}" 
 	       th:errors="*{hour}" style="color:red;"></p>
+		<p th:if="${#fields.hasErrors('date')}" 
+		   th:errors="*{date}" style="color:red;"></p>
+
+		
 	</form>
 
 </body>
