@@ -66,4 +66,14 @@ public class ReservationService {
      * definire degli intervalli di tempo in cui prenotare che abbiano un int 
      * di posti rimanenti prenotabili*/
     public static record Slot(LocalTime time, int remaining) {}
+
+
+    public Reservation findById(Long id) {
+        return reservationRepository.findById(id).orElse(null);
+    }
+
+    public void delete(Reservation reservation) {
+        reservationRepository.delete(reservation);
+    }
+
 }

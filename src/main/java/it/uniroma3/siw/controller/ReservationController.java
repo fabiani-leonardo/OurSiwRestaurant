@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,7 @@ public class ReservationController {
 
         List<Reservation> reservations = this.reservationService.getByUser(user);
         model.addAttribute("reservations", reservations);
+        model.addAttribute("today", LocalDate.now());
         return "reservation/reservationHome";
     }
 
@@ -62,6 +64,7 @@ public class ReservationController {
         reservation.setDate(chosen);
 
         model.addAttribute("reservation", reservation);
+        model.addAttribute("today", LocalDate.now());
         model.addAttribute("slots", reservationService.getSlotAvailability(chosen));
         return "reservation/reservationForm";
     }
@@ -86,18 +89,48 @@ public class ReservationController {
                              .map(Slot::remaining)
                              .orElse(0);
         if (reservation.getNumberOfPeople() > remaining) {
-            br.rejectValue("ora", "full", "Posti insufficienti per questo orario");
+            br.rejectValue("hour", "full", "Posti insufficienti per questo orario");
             model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
             return "reservation/reservationForm";
         }
 
-        // 3) associa utente e salva
+     // 3) controllo se l'utente ha già prenotato in quella data
         UserDetails ud = (UserDetails) SecurityContextHolder.getContext()
-                                    .getAuthentication().getPrincipal();
+                                        .getAuthentication().getPrincipal();
         User user = credentialsService.getCredentials(ud.getUsername()).getUser();
+
+        boolean alreadyBooked = reservationService.getByUser(user).stream()
+            .anyMatch(r -> r.getDate().equals(reservation.getDate()));
+
+        if (alreadyBooked) {
+            br.rejectValue("date", "duplicate", "Hai già una prenotazione per questa data");
+            model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
+            return "reservation/reservationForm";
+        }
+
+        // 4) associa utente e salva
         reservation.setUser(user);
         reservationService.save(reservation);
 
         return "redirect:/reservations";
     }
+    
+    @PostMapping("/delete/{id}")
+    public String deleteReservation(@PathVariable("id") Long id) {
+        Reservation reservation = reservationService.findById(id);
+        
+        if (reservation != null) {
+            // Verifica che l'utente loggato sia il proprietario della prenotazione
+            UserDetails ud = (UserDetails) SecurityContextHolder.getContext()
+                                        .getAuthentication().getPrincipal();
+            User user = credentialsService.getCredentials(ud.getUsername()).getUser();
+
+            if (reservation.getUser().equals(user)) {
+                reservationService.delete(reservation);
+            }
+        }
+
+        return "redirect:/reservations";
+    }
+
 }
