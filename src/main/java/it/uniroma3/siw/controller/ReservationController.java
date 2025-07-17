@@ -41,7 +41,7 @@ public class ReservationController {
     @Autowired
     private CredentialsService credentialsService;
     
-    @GetMapping						//mapping base di /reservations
+    @GetMapping		//mapping base di /reservations
     public String showReservationHome(Model model) {
     	
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();	//
