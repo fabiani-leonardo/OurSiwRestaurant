@@ -57,41 +57,47 @@ public class ReservationController {
 
     @GetMapping("/add")
     public String showReservationForm(
-        @RequestParam(name="date", required=false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-        LocalDate date,
+        @RequestParam(name="date", required=false)		//legge il parametro date nell'url
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)	//converte la stringa data nell'url in un oggetto LocalDate
+        LocalDate date,		//l'oggetto localDate fornito nell'url
         Model model) {
     	
-        LocalDate chosen = (date != null) ? date : LocalDate.now();
+        LocalDate chosen = (date != null) ? date : LocalDate.now(); //se date!=null allora chosen=date altrimenti chosen=data di oggi
 
         Reservation reservation = new Reservation();
         reservation.setDate(chosen);
-
+        
+        //variabili utili nell'html
         model.addAttribute("reservation", reservation);
         model.addAttribute("today", LocalDate.now());
-        model.addAttribute("slots", reservationService.getSlotAvailability(chosen));
+        model.addAttribute("slots", reservationService.getSlotAvailability(chosen));//una lista di slot temporali che va dalle 19 alle 22.30 con i posti liberi per ogni orario nel giorno scelto
         return "reservation/reservationForm";
     }
 
 
     @PostMapping("/add")
     public String processAddReservation(
-            @ModelAttribute("reservation") @Valid Reservation reservation,
-            BindingResult br,
+            @ModelAttribute("reservation") @Valid Reservation reservation,	//Spring lo ricostruisce e lo valida automaticamente
+            BindingResult br,	//Contiene gli errori di validazione (se ci sono).
             Model model) {
 
         // 1) validazione form base
-        if (br.hasErrors()) {
+        if (br.hasErrors()) {	//Se ci sono errori nel form (es. campo vuoto, numero non valido), si ricarica la pagina.
             model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
             return "reservation/reservationForm";
         }
 
         // 2) controllo capienza
-        int remaining = reservationService.getSlotAvailability(reservation.getDate()).stream()
-                             .filter(s -> s.time().equals(reservation.getHour()))
-                             .findFirst()
-                             .map(Slot::remaining)
-                             .orElse(0);
+        List<Slot> slots = reservationService.getSlotAvailability(reservation.getDate());
+        int remaining = 0;
+        
+        for (Slot slot : slots) {
+        	if (slot.time().equals(reservation.getHour())) {
+        		remaining = slot.remaining();
+        		break;
+        	}
+        }
+
         if (reservation.getNumberOfPeople() > remaining) {
             br.rejectValue("hour", "full", "Posti insufficienti per questo orario");
             model.addAttribute("slots", reservationService.getSlotAvailability(reservation.getDate()));
@@ -103,8 +109,15 @@ public class ReservationController {
                                         .getAuthentication().getPrincipal();
         User user = credentialsService.getCredentials(ud.getUsername()).getUser();
 
-        boolean alreadyBooked = reservationService.getByUser(user).stream()
-            .anyMatch(r -> r.getDate().equals(reservation.getDate()));
+        boolean alreadyBooked = false;
+        List<Reservation> userReservations = reservationService.getByUser(user);
+
+        for (Reservation r : userReservations) {
+        	if (r.getDate().equals(reservation.getDate())) {
+        		alreadyBooked = true;
+        		break;
+        	}
+        }
 
         if (alreadyBooked) {
             br.rejectValue("date", "duplicate", "Hai già una prenotazione per questa data");
