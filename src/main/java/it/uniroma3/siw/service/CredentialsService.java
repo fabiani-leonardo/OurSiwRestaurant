@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.CredentialsRepository;
 import jakarta.transaction.Transactional;
 
@@ -48,6 +49,15 @@ public class CredentialsService {
 
     public boolean adminExists() {	//questo metodo serve a verificare l'esistenza di almeno un admin nel db
         return credentialsRepository.existsByRole(Credentials.ADMIN_ROLE);
+    }
+    
+    @Transactional
+    public void saveUser(User user) {
+        Credentials credentials = this.credentialsRepository.findByUser(user).orElse(null);
+        if (credentials != null) {
+            credentials.setUser(user);
+            this.credentialsRepository.save(credentials);
+        }
     }
 
 }

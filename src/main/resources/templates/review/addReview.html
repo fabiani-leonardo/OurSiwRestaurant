@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Nuova Recensione</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+<body>
+
+	<div th:if="${review}">
+		<h1>Scrivi la tua recensione</h1>
+
+		<form th:action="@{/addReview}" method="post" th:object="${review}">
+			<div>
+				<label for="rating">Voto:</label>
+				<input type="number" id="rating" th:field="*{rating}" />
+			</div>
+
+			<div>
+				<label for="comment">Commento:</label>
+				<textarea id="comment" th:field="*{comment}" rows="4" cols="50"></textarea>
+			</div>
+
+			<div>
+				<label for="date">Data:</label>
+				<input type="date" id="date" th:field="*{date}" />
+			</div>
+
+			<br/>
+			<button type="submit">Invia recensione</button>
+		</form>
+	</div>
+
+	<div th:unless="${review}">Impossibile caricare il modulo per la recensione</div>
+
+	<br>
+	<a href="/reviews">Torna alla lista delle recensioni</a>
+
+</body>
+</html>

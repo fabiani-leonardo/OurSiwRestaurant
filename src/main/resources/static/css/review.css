@@ -1,0 +1,174 @@
+/* Impostazioni generali del body */
+body {
+	margin: 0;/* Rimuove margini di default */
+	background-color: #f7e7e1;/* Sfondo principale */
+	color: #7c4d25;/* Colore principale del testo */
+	font-family: 'Brush Script MT', cursive;/* Font principale */
+	padding: 2rem;/* Spaziatura interna */
+	max-width: 900px;/* Larghezza massima */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Titoli principali e secondari */
+h2 {
+	font-family: 'Brush Script MT', cursive;
+	font-weight: normal;
+	text-align: center;
+	color: #7c4d25;
+
+	font-size: 2.5rem;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+}
+
+/* Lista delle recensioni */
+ul {
+	list-style: none;/* Rimuove pallini elenco */
+	padding-left: 0;
+	margin: 0;
+}
+
+li {
+	border: 2px solid #a2673c;
+	border-radius: 10px; /* Angoli arrotondati */
+	padding: 1rem 1.5rem;
+	margin-bottom: 1.5rem;
+	background-color: #fff7f0;/* Sfondo */
+	box-shadow: 1px 1px 5px rgba(124, 77, 37, 0.15);/* Leggera ombra */
+}
+
+/* Nome utente  */
+.nome-utente {
+	font-size: 1.5rem;
+	font-weight: normal;
+	margin: 0 0 0.5rem 0;
+	color: #7c4d25;
+}
+
+/* Riga con data e voto */
+.info-line {
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+	font-size: 1.1rem;
+	color: #a2673c;
+	margin: 0 0 0.8rem 0;
+}
+
+/* Testo del commento */
+.commento {
+	font-style: italic;
+	font-size: 1.2rem;
+	color: #5a3d1b;
+	margin: 0;
+}
+
+.stars {
+  font-size: 2rem;
+  color: #c07e6f;          /* stelle "spente" */
+  position: relative;
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+.stars::before {
+  content: "*****";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #7c4d25;          /* stelle "piene" */
+  overflow: hidden;
+  width: 0;
+  white-space: nowrap;
+}
+
+/* Settaggio larghezza stelle piene in base al voto */
+.stars[data-rating="1"]::before { width: 20%; }
+.stars[data-rating="2"]::before { width: 40%; }
+.stars[data-rating="3"]::before { width: 60%; }
+.stars[data-rating="4"]::before { width: 80%; }
+.stars[data-rating="5"]::before { width: 100%; }
+
+/* Pulsante Elimina */
+.btn-elimina {
+	display: inline-block;
+	margin-top: 0.5rem;
+	padding: 0.3rem 0.8rem;
+	border: 1.5px solid #7c4d25;
+	border-radius: 6px;
+	background-color: #a2673c;
+	color: #f7e7e1;
+	text-decoration: none;
+	font-family: 'Brush Script MT', cursive;
+	font-weight: normal;
+	font-size: 0.9rem;
+}
+
+.btn-elimina::before {
+	content: " *";
+	font-size: 0.8rem;
+}
+
+.btn-elimina::after {
+	content: " *";
+	font-size: 0.8rem;
+}
+
+.btn-elimina:hover {
+	border-color: #a2673c;
+}
+
+/* Contenitore recensione personale */
+.my-review {
+	border: 2px solid #7c4d25;
+	border-radius: 10px;
+	background-color: #fff7f0;
+	padding: 1rem 1.5rem;
+	margin-bottom: 2rem;
+	box-shadow: 2px 2px 8px rgba(124, 77, 37, 0.2);
+}
+
+.my-review h2 {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+/* Link generali */
+a {
+	color: #7c4d25;
+	text-decoration: none;
+	font-family: 'Brush Script MT', cursive;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Link Aggiungi una nuova recensione*/
+.btn-add-review {
+	display: inline-block;
+	font-family: 'Brush Script MT', cursive;
+	font-size: 1rem;
+	font-weight: normal;
+	margin: 0;
+	color: #7c4d25;
+}
+
+.btn-add-review::before {
+	content: " *";
+	font-size: 1rem;
+}
+
+.btn-add-review::after {
+	content: " *";
+	font-size: 1rem;
+}
+
+.btn-add-review:hover {
+	color: #c07e6f;
+	transform: translateX(4px);
+	text-decoration: underline;
+}

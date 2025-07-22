@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.MenuLine;
 import it.uniroma3.siw.service.MenuLineService;
-import it.uniroma3.siw.service.MenuService;
 import jakarta.validation.Valid;
 
 @Controller
 public class MenuController {
-	@Autowired
-	private MenuService menuService;
+
 	@Autowired
 	private MenuLineService menuLineService;
 

@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -25,8 +27,10 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
+	@Min(0)
+	@Max(5)
 	 // User → Recensione (lato non proprietario)
-    @OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", orphanRemoval = true) //dice al framework di cancellare automaticamente dal database un’entità “figlia” quando non è più collegata
     private Review review;
 	
     

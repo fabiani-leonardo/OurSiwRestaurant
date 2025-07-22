@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recensioni</title>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/review.css" />
+</head>
+<body>
+
+    <!-- Messaggio di errore se presente -->
+    <div th:if="${errorMessage}" style="color: red; font-weight: bold;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+
+<div th:if="${myReview != null}" class="my-review">
+    <div class="info-line">
+      <span><strong></strong> <span th:text="${myReview.date}"></span></span>
+     <span class="stars" th:attr="data-rating=${myReview.rating}">*****</span>
+      
+    </div>
+    <p class="commento"><span th:text="${myReview.comment}"></span></p>
+    <a th:href="@{'/deleteReview/' + ${myReview.id}}" class="btn-elimina">Elimina</a>
+</div>
+    <!-- Elenco di tutte le recensioni -->
+    <h2>Tutte le recensioni</h2>
+    <ul>
+        <li th:each="review : ${allReviews}">
+			<p class="nome-utente">
+			     <strong th:text="${review.user.name + ' ' + review.user.surname}"></strong>
+			   </p>
+			   <div class="info-line">
+			     <span class="data" th:text="${review.date}"></span>
+			     <span class="stars" th:attr="data-rating=${review.rating}">*****</span>
+			   </div>
+			   <p class="commento"><span th:text="${review.comment}"></span></p>
+           
+        </li>
+    </ul>
+
+    <!-- Link per aggiungere una nuova recensione -->
+    <div>
+        <a th:href="@{/addReview}" class="btn-add-review">Aggiungi una nuova recensione</a>
+    </div>
+</body>
+</html>
