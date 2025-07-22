@@ -49,8 +49,8 @@
 
     <br>
 
-    <a th:href="@{/reservations/add}">
-        <button>Nuova prenotazione</button>
-    </a>
+	<form th:action="@{/reservations/add}" method="get">
+	    <button type="submit">Nuova prenotazione</button>
+	</form>
 </body>
 </html>

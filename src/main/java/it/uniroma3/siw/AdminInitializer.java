@@ -16,6 +16,7 @@ public class AdminInitializer implements CommandLineRunner {
     @Autowired
     private CredentialsService credentialsService;
 
+    /*springboot fa partire questo metodo all'avvio del programma*/
     @Override
     public void run(String... args) throws Exception {
         if (!credentialsService.adminExists()) {			//controlliamo se esiste già un admin nel sistema
