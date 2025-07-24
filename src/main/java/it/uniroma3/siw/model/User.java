@@ -27,8 +27,7 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Min(0)
-	@Max(5)
+
 	 // User → Recensione (lato non proprietario)
 	@OneToOne(mappedBy = "user", orphanRemoval = true) //dice al framework di cancellare automaticamente dal database un’entità “figlia” quando non è più collegata
     private Review review;
