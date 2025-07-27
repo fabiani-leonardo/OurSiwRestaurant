@@ -23,7 +23,7 @@
 
 		<div>
 			<label>Commento:</label>
-			<span><textarea th:field="*{comment}" rows="4" cols="50"></textarea></span>
+			<span><textarea th:field="*{comment}" ></textarea></span>
 			<span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
 		</div>
 
