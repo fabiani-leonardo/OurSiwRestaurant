@@ -178,15 +178,16 @@ form.form-prenotazione button[type="submit"]:hover {
   text-decoration: underline;
   color: #c07e6f;
 }
+
 /* ===== LINK "TORNA ALLA HOME" IN BASSO A DESTRA ===== */
-./* Contenitore per spostare il link a destra, ma non fisso */
+/* Contenitore per spostare il link a destra, ma non fisso */
 /* ===== LINK "TORNA ALLA HOME" IN FONDO A DESTRA ===== */
 /* Contenitore che mette il link in basso a destra, ma NON fisso */
-.home{
-  display: flex;
-  align-items: flex-end;
-  /* spinge il link a destra */
-  margin-top: 4rem;           /* spazio sopra */
+
+.home {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 4rem; /* spazio sopra */
 }
 
 /* Link come bottone decorato con * prima e dopo */

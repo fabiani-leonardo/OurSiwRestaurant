@@ -26,10 +26,30 @@ header a:hover {
     color: #8c6a52;
 }
 
+/* Titolo del ristorante - aumentato margine inferiore */
+.titolo {
+    text-align: center;
+    margin: 40px 0 30px 0; /* aumentato margine sotto */
+    font-size: 32px; /* reso più grande per importanza */
+    font-weight: bold;
+}
+
 h1 {
     text-align: center;
-    margin-top: 30px;
+    margin: 30px 0 50px 0; /* aumentato margine sotto da 30px a 50px */
     font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Contenitore delle operazioni admin - aggiunto margine superiore */
+.admin-operations {
+    margin-top: 40px; /* spazio extra sopra le operazioni */
+    padding-top: 20px; /* padding aggiuntivo */
 }
 
 /* Centrare e dare margine ai div */
@@ -56,10 +76,14 @@ div a:hover {
 
 /* Specifico per link "Modifica" e "Cancella" (o link multipli) */
 div.links-admin a {
-    margin: 0 10px;  
+    margin: 0 10px;
 }
 
-
-
-
-
+/* Opzionale: linea separatrice visiva */
+.separator {
+    width: 50%;
+    height: 1px;
+    background-color: #d2b48c;
+    margin: 30px auto;
+    opacity: 0.5;
+}

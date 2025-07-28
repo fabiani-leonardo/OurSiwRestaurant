@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			Ristorante-HomePage
-		</title>
-		<link rel="stylesheet" href="/css/adminHome.css" />
-	</head>
-	<body>
-		<header>
-    <div style="display: flex; justify-content: flex-end; gap: 15px; font-size: 14px;">
-        <!-- Se l'utente è autenticato -->
-        <div th:if="${userDetails}">
-            <span th:text="${userDetails.username}"></span>
-            <a href="/logout">Logout</a>
-        </div>
+<head>
+    <title>Ristorante-HomePage</title>
+    <link rel="stylesheet" href="/css/adminHome.css" />
+</head>
+<body>
+    <header>
+        <div style="display: flex; justify-content: flex-end; gap: 15px; font-size: 14px;">
+            <!-- Se l'utente è autenticato -->
+            <div th:if="${userDetails}">
+                <span th:text="${userDetails.username}"></span>
+                <a href="/logout">Logout</a>
+            </div>
 
-        <!-- Se l'utente NON è autenticato -->
-        <div th:if="${userDetails == null}">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <!-- Se l'utente NON è autenticato -->
+            <div th:if="${userDetails == null}">
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-		
-		<h1>Operazioni per amministratore</h1>
-			<div>
-				<a href="/admin/menu/adminMenuHome">Operazioni sul menu</a>
-			</div>
-			<div>
-				<a href="/admin/adminReview">Operazioni sulle recensioni</a>
-			</div>
-			<div>
-				<a href="/reservations/admin">Visualizza le prenotazioni</a>
-			</div>
-	</body>
-	
+    <main>
+        <h1>Elysium</h1>
+
+        <h2>Operazioni per amministratore:</h2>
+        
+        <nav class="admin-links">
+            <div>
+                <a href="/admin/menu/adminMenuHome">Operazioni sul menu</a>
+            </div>
+            <div>
+                <a href="/admin/adminReview">Operazioni sulle recensioni</a>
+            </div>
+            <div>
+                <a href="/reservations/admin">Visualizza le prenotazioni</a>
+            </div>
+        </nav>
+    </main>
+</body>
 </html>
