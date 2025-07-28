@@ -4,9 +4,14 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class MenuLine {
@@ -14,14 +19,20 @@ public class MenuLine {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	@Column(nullable = false)
 	private String name;
-	@Column(length= 250)
+	@NotBlank
+	@Column(length=250)
 	private String description;
+	@Min(1)
 	@Column(nullable = false)
 	private int price;
-	@Column(nullable= false)
-	private String category;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Category category;
+
 	
 	public Long getId() {
 		return id;
@@ -47,11 +58,12 @@ public class MenuLine {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getCategory() {
-		return category;
+	public Category getCategory() {
+	    return category;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+
+	public void setCategory(Category category) {
+	    this.category = category;
 	}
 	@Override
 	public int hashCode() {

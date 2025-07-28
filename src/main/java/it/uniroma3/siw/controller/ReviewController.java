@@ -115,5 +115,15 @@ public class ReviewController {
 
 	        return "redirect:/reviews";
 	    }
+	    
+	    /*********************************ADMIN*****************************************/
+	    
+	    //l'admin vede le recensioni
+	    @GetMapping("/admin/adminReview")
+	    public String showAllReviewsForAdmin(Model model) {
+	        List<Review> allReviews = (List<Review>) reviewService.getAllReviews();
+	        model.addAttribute("allReviews", allReviews);
+	        return "admin/review/adminReview.html";  // path del template senza estensione
+	    }
 
 }

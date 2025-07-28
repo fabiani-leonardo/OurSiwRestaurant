@@ -1,0 +1,107 @@
+/* Impostazioni generali del body */
+body {
+    margin: 0;
+    font-family: 'Caveat', cursive, Arial, Helvetica, sans-serif;
+    background-color: #fffaf0; /* beige chiarissimo */
+    color: #6b4c3b; /* marrone più chiaro e caldo */
+    padding: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Titolo principale */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+/* Lista delle recensioni */
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+li {
+    border: 2px solid #8c6a52; /* marroncino */
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #fffaf0; /* sfondo leggermente più chiaro */
+    box-shadow: 1px 1px 5px rgba(107, 76, 59, 0.15);
+}
+
+/* Nome utente */
+.nome-utente {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #6b4c3b;
+}
+
+/* Riga con data e voto */
+.info-line {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: #8c6a52;
+    margin: 0 0 0.8rem 0;
+}
+
+/* Testo del commento */
+.commento {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #6b4c3b;
+    margin: 0;
+}
+
+/* Stelle (rating) */
+.stars {
+    font-size: 2rem;
+    color: #c07e6f; /* stelle "spente" */
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    letter-spacing: 2px;
+}
+
+.stars::before {
+    content: "*****";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #6b4c3b; /* stelle "piene" marrone più scuro */
+    overflow: hidden;
+    width: 0;
+    white-space: nowrap;
+}
+
+.stars[data-rating="1"]::before { width: 20%; }
+.stars[data-rating="2"]::before { width: 40%; }
+.stars[data-rating="3"]::before { width: 60%; }
+.stars[data-rating="4"]::before { width: 80%; }
+.stars[data-rating="5"]::before { width: 100%; }
+
+/* Pulsante Torna alla Home */
+div {
+    text-align: center;
+    margin: 15px;
+}
+
+div a {
+    color: #6b4c3b;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+div a:hover {
+    color: #8c6a52;
+    text-decoration: underline;
+}

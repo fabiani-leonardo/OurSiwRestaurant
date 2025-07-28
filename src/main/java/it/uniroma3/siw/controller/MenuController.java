@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.model.Category;
 import it.uniroma3.siw.model.MenuLine;
 import it.uniroma3.siw.service.MenuLineService;
 import jakarta.validation.Valid;
@@ -69,19 +70,19 @@ public class MenuController {
 	    List<MenuLine> allMenuLines = (List<MenuLine>) this.menuLineService.getAllMenuLine();
 
 	    List<MenuLine> primi = allMenuLines.stream()
-	            .filter(m -> m.getCategory().equalsIgnoreCase("primo"))
+	            .filter(m -> m.getCategory() == Category.Primo)
 	            .toList();
 
 	    List<MenuLine> secondi = allMenuLines.stream()
-	            .filter(m -> m.getCategory().equalsIgnoreCase("secondo"))
+	            .filter(m -> m.getCategory() == Category.Secondo)
 	            .toList();
 
 	    List<MenuLine> dolci = allMenuLines.stream()
-	            .filter(m -> m.getCategory().equalsIgnoreCase("dolce"))
+	            .filter(m -> m.getCategory() == Category.Dolce)
 	            .toList();
 
 	    List<MenuLine> bevande = allMenuLines.stream()
-	            .filter(m -> m.getCategory().equalsIgnoreCase("bevanda"))
+	            .filter(m -> m.getCategory() == Category.Bevanda)
 	            .toList();
 
 	    model.addAttribute("primi", primi);

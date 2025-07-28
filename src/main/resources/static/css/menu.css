@@ -94,3 +94,34 @@ li {
 	margin-top: 0rem; 
 	line-height: 1.2;
 }
+/* Torna alla home in stile "btn-add-review" */
+.btn-add-review {
+	display: inline-block;
+	font-family: 'Brush Script MT', cursive;
+	font-size: 1rem;
+	font-weight: normal;
+	margin: 0;
+	color: #7c4d25;
+}
+
+.btn-add-review::before {
+	content: " *";
+	font-size: 1rem;
+}
+
+.btn-add-review::after {
+	content: " *";
+	font-size: 1rem;
+}
+
+.btn-add-review:hover {
+	color: #c07e6f;
+	transform: translateX(4px);
+	text-decoration: underline;
+}
+
+/* Contenitore per centrare */
+.torna-home-container {
+	margin-top: 3rem;
+	text-align: center;
+}

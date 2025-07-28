@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: 'Caveat', cursive, Arial, Helvetica, sans-serif;
+    background-color: #fffaf0; /* beige chiarissimo */
+    color: #6b4c3b; /* marrone più chiaro e caldo */
+}
+
+header {
+    background-color: #d2b48c; /* marroncino/beige più scuro */
+    padding: 5px 10px;
+}
+
+header div {
+    color: #6b4c3b;
+}
+
+header a {
+    color: #6b4c3b; /* marrone caldo, niente blu */
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+header a:hover {
+    text-decoration: underline;
+    color: #8c6a52;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+/* Centrare e dare margine ai div */
+div {
+    text-align: center;
+    margin: 15px;
+}
+
+/* Stile generale per i link nei div */
+div a {
+    color: #6b4c3b; /* marrone caldo */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover link generali */
+div a:hover {
+    color: #8c6a52;
+    text-decoration: underline;
+}
+
+/* Specifico per link "Modifica" e "Cancella" (o link multipli) */
+div.links-admin a {
+    margin: 0 10px;  
+}
+
+
+
+
+

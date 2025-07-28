@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Review {
@@ -19,15 +21,17 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@Column(length= 2000)
+	@NotBlank
+	@Column(length=2000)
 	private String comment;
 	@Min(0)
 	@Max(5)
 	@Column(nullable = false)
 	private int rating;
+	@NotNull
 	@Column(nullable = false)
 	private LocalDate date;
-	
+
 	@OneToOne
 	@JoinColumn(name = "user_id", nullable=false)
 	private User user;

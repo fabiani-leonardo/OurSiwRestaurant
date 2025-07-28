@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>New MenuLine</title>
-	<link rel="stylesheet" href="/stile.css?version=3" />
+	<link rel="stylesheet" href="/css/adminOperazioni2.css" />
 </head>
 
 <body>
@@ -12,28 +12,36 @@
 	<h1>Aggiungi una voce del menu</h1>
 	<form th:action="@{/menuLine}" method="POST" th:object="${menuLine}">
 		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error-msg">...</p>
 		</div>
 		<div>
 			<label>Nome:</label>
 			<span><input type="text" th:field="${menuLine.name}" /></span>
-			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-msg"></span>
 		</div>
 		<div>
 			<label>Categoria:</label>
-			<span><input type="text" th:field="${menuLine.category}" /></span>
-			<span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+			<select th:field="*{category}">
+				<option value="" disabled selected>-- Seleziona categoria --</option>
+				<option th:value="Primo">Primo</option>
+				<option th:value="Secondo">Secondo</option>
+				<option th:value="Dolce">Dolce</option>
+				<option th:value="Bevanda">Bevanda</option>
+			</select>
+			<span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error-msg"></span>
+
 		</div>
 		<div>
 			<label>Prezzo:</label>
 			<span><input type="number" th:field="${menuLine.price}" /></span>
-			<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+			<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-msg"></span>
 		</div>
 		<div>
 			<label>Descrizione:</label>
 			<span><input type="text" th:field="${menuLine.description}" /></span>
-			<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+			<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error-msg"></span>
 		</div>
+
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>

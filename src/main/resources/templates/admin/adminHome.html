@@ -4,22 +4,25 @@
 		<title>
 			Ristorante-HomePage
 		</title>
-		<!--<link rel="stylesheet" href="/css/" />-->
+		<link rel="stylesheet" href="/css/adminHome.css" />
 	</head>
 	<body>
 		<header>
-			    <!-- Se l'utente è autenticato -->
-			    <div th:if="${userDetails}">							<!-- dal controller sto passando questa variabile offerta da Spring Security che ci fornisce i dati dell'utente autenticato oppure null se non si è auteticato' -->
-			        <span th:text="${userDetails.username}"></span>		<!-- stampiamo lo username dell'utente autenticato' -->
-			        <a href="/logout">Logout</a>						<!-- diamo all'utente autenticato la possibilità di uscire dal sistema' -->
-			    </div>
+    <div style="display: flex; justify-content: flex-end; gap: 15px; font-size: 14px;">
+        <!-- Se l'utente è autenticato -->
+        <div th:if="${userDetails}">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
 
-			    <!-- Se l'utente NON è autenticato -->
-			    <div th:if="${userDetails == null}">					<!-- Se l'utente non è autenticat questo oggetto è null come detto sopra' -->
-			        <a href="/login">Login</a>							<!-- visto che non è autenticato offriamo la possibilità di loggarsi -->
-			        <a href="/register">Register</a>					<!-- o registrarsi -->
-			    </div>
-		</header>
+        <!-- Se l'utente NON è autenticato -->
+        <div th:if="${userDetails == null}">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+    </div>
+</header>
+
 		
 		<h1>Operazioni per amministratore</h1>
 			<div>

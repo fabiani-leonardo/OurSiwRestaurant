@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Nuova Recensione</title>
-	<link rel="stylesheet" href="/stile.css?version=3" />
+	<link rel="stylesheet" href="/css/formReview.css" />
 </head>
 
 <body>
-	<div><a href="/"><img src="/logo-siw.png" width="50%" /></a></div>
+
 	<h1>Scrivi una nuova recensione</h1>
 
 	<form th:action="@{/addReview}" method="POST" th:object="${review}">
-		<div th:if="${#fields.hasGlobalErrors()}">
+		<div class="errori" th:if="${#fields.hasGlobalErrors()}" style="width:100%;">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore</p>
 		</div>
 
 		<div>
 			<label>Voto:</label>
-			<span><input type="number" th:field="*{rating}" min="0" max="5" required  /></span>
-			<span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+			<input type="number" th:field="*{rating}" min="0" max="5" required />
+			<span class="errori" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
 		</div>
 
 		<div>
 			<label>Commento:</label>
-			<span><textarea th:field="*{comment}" ></textarea></span>
-			<span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
+			<textarea th:field="*{comment}"></textarea>
+			<span class="errori" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
 		</div>
 
 		<div>
-			<span><button type="submit">Conferma</button></span>
+			<button type="submit">Conferma</button>
 		</div>
 	</form>
 
+
+
 </body>
+
 </html>

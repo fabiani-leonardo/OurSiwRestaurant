@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tutte le recensioni - Admin</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/adminReview.css" />
+</head>
+<body>
+    <h1>Tutte le recensioni (admin)</h1>
+
+    <ul>
+        <li th:each="review : ${allReviews}">
+            <p class="nome-utente">
+                <strong th:text="${review.user.name + ' ' + review.user.surname}"></strong>
+            </p>
+            <div class="info-line">
+                <span class="data" th:text="${review.date}"></span>
+                <span class="stars" th:attr="data-rating=${review.rating}">*****</span>
+            </div>
+            <p class="commento" th:text="${review.comment}"></p>
+        </li>
+    </ul>
+
+    <div>
+        <a th:href="@{/}" class="btn-add-review">Torna alla home</a>
+    </div>
+</body>
+</html>

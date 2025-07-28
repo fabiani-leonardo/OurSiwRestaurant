@@ -12,6 +12,7 @@ h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
   color: #7c4d25;
+  font-weight: normal;
 }
 
 /* ===== MESSAGGIO SENZA PRENOTAZIONI ===== */
@@ -177,3 +178,43 @@ form.form-prenotazione button[type="submit"]:hover {
   text-decoration: underline;
   color: #c07e6f;
 }
+/* ===== LINK "TORNA ALLA HOME" IN BASSO A DESTRA ===== */
+./* Contenitore per spostare il link a destra, ma non fisso */
+/* ===== LINK "TORNA ALLA HOME" IN FONDO A DESTRA ===== */
+/* Contenitore che mette il link in basso a destra, ma NON fisso */
+.home{
+  display: flex;
+  align-items: flex-end;
+  /* spinge il link a destra */
+  margin-top: 4rem;           /* spazio sopra */
+}
+
+/* Link come bottone decorato con * prima e dopo */
+.home-bottom {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1rem;                 /* più piccolo */
+  color: #7c4d25;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Aggiungi * prima e dopo con ::before e ::after */
+.home-bottom::before {
+  content: "* ";
+}
+
+.home-bottom::after {
+  content: " *";
+}
+
+/* Hover effetto */
+.home-bottom:hover {
+  color: #c07e6f;
+  transform: translateX(4px);
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+

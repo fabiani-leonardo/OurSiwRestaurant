@@ -11,6 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -18,13 +22,17 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	@Column(nullable = false)
 	private LocalDate date;
+	@NotNull
 	@Column(nullable = false)
 	private LocalTime hour;
+	@Min(1)
+	@Max(20)
 	@Column(nullable = false)
 	private int numberOfPeople;
-	
+
 	@ManyToOne
 	private User user;
 	
